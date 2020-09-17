@@ -39,3 +39,30 @@ func TestInt(t *testing.T) {
 		})
 	}
 }
+
+func TestFloat64(t *testing.T) {
+	type args struct {
+		str string
+	}
+	tests := []struct {
+		name string
+		args args
+		want float64
+	}{
+		{
+			args: args{str: "wie32w.ef0f3"},
+			want: 32.03,
+		},
+		{
+			args: args{str: "wie32w.ef0.f3"},
+			want: 0,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := Float64(tt.args.str); got != tt.want {
+				t.Errorf("Float64() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
