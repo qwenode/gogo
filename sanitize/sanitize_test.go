@@ -66,3 +66,61 @@ func TestFloat64(t *testing.T) {
 		})
 	}
 }
+
+func TestAlphabet(t *testing.T) {
+	type args struct {
+		str string
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			args: args{str: "HKD 39.79+"},
+			want: "HKD",
+		},
+		{
+			args: args{str: "HKD 39.79+ test"},
+			want: "HKD test",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := Alphabet(tt.args.str); got != tt.want {
+				t.Errorf("Alphabet() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestAlphabetWithoutSpace(t *testing.T) {
+	type args struct {
+		str string
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			args: args{str: "HKD 39.79+"},
+			want: "HKD",
+		},
+		{
+			args: args{str: "HKD 39.79+ test"},
+			want: "HKDtest",
+		},
+		{
+			args: args{str: "HKD t39.tt79+ test"},
+			want: "HKDttttest",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := AlphabetWithoutSpace(tt.args.str); got != tt.want {
+				t.Errorf("AlphabetWithoutSpace() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
