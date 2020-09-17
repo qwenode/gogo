@@ -84,6 +84,10 @@ func TestAlphabet(t *testing.T) {
 			args: args{str: "HKD 39.79+ test"},
 			want: "HKD test",
 		},
+		{
+			args: args{str: "   "},
+			want: "",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -114,6 +118,10 @@ func TestAlphabetWithoutSpace(t *testing.T) {
 		{
 			args: args{str: "HKD t39.tt79+ test"},
 			want: "HKDttttest",
+		},
+		{
+			args: args{str: "  "},
+			want: "",
 		},
 	}
 	for _, tt := range tests {
