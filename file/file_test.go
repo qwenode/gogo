@@ -39,3 +39,38 @@ func TestWriteFileAppend(t *testing.T) {
 		})
 	}
 }
+
+func TestSha1(t *testing.T) {
+	type args struct {
+		fileName string
+	}
+	sha1, _ := Sha1("file.go")
+	tests := []struct {
+		name    string
+		args    args
+		want    string
+		wantErr bool
+	}{
+		{
+			args: args{fileName: "file.go"},
+			want: sha1,
+		},
+		{
+			args:    args{fileName: "."},
+			want:    "",
+			wantErr: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := Sha1(tt.args.fileName)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("Sha1() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if got != tt.want {
+				t.Errorf("Sha1() got = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
