@@ -7,7 +7,6 @@ import (
 func GetAllBindAddress() []net.IP {
 	ipList, _ := net.InterfaceAddrs()
 	list := make([]net.IP, 0)
-	//ipList = append(ipList)
 	for _, addr := range ipList {
 		ip := addr.(*net.IPNet).IP
 		list = append(list, ip)
@@ -19,7 +18,7 @@ func GetAllIPV4BindAddress() []net.IP {
 	all := GetAllBindAddress()
 	list := make([]net.IP, 0)
 	for _, ip := range all {
-		if !IsIPv4IntranetAddress(ip) {
+		if false == IsIPv4IntranetAddress(ip) {
 			list = append(list, ip)
 		}
 	}
