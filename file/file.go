@@ -5,6 +5,7 @@ import (
 	"crypto/sha1"
 	"crypto/sha256"
 	"fmt"
+	"hash/crc32"
 	"io"
 	"os"
 )
@@ -58,4 +59,18 @@ func Md5(filename string) (string, error) {
 		return "", err
 	}
 	return fmt.Sprintf("%x", h.Sum(nil)), nil
+}
+
+func Crc32(filename string) (string, error) {
+	f, err := os.Open(filename)
+	if err != nil {
+		return "", err
+	}
+	defer f.Close()
+	table := crc32.MakeTable(crc32.IEEE)
+	hash32 := crc32.New(table)
+	if _, err := io.Copy(hash32, f); err != nil {
+		return "", err
+	}
+	return fmt.Sprintf("%x", hash32.Sum(nil)), nil
 }

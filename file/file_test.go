@@ -144,3 +144,38 @@ func TestMd5(t *testing.T) {
 		})
 	}
 }
+
+func TestCrc32(t *testing.T) {
+	type args struct {
+		filename string
+	}
+	sha1, _ := Crc32("file.go")
+	tests := []struct {
+		name    string
+		args    args
+		want    string
+		wantErr bool
+	}{
+		{
+			args: args{filename: "file.go"},
+			want: sha1,
+		},
+		{
+			args:    args{filename: "."},
+			want:    "",
+			wantErr: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := Crc32(tt.args.filename)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("Crc32() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if got != tt.want {
+				t.Errorf("Crc32() got = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
