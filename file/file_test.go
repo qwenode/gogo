@@ -22,6 +22,13 @@ func TestWriteFileAppend(t *testing.T) {
 			},
 			wantErr: false,
 		},
+		{
+			args: args{
+				filename: ".",
+				c:        []byte("haha"),
+			},
+			wantErr: true,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
