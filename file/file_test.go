@@ -60,6 +60,11 @@ func TestSha1(t *testing.T) {
 			want:    "",
 			wantErr: true,
 		},
+		{
+			args:    args{filename: "not_exists_file.noexists"},
+			want:    "",
+			wantErr: true,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -92,6 +97,11 @@ func TestSha256(t *testing.T) {
 		},
 		{
 			args:    args{filename: "."},
+			want:    "",
+			wantErr: true,
+		},
+		{
+			args:    args{filename: "not_exists_file.noexists"},
 			want:    "",
 			wantErr: true,
 		},
@@ -130,6 +140,11 @@ func TestMd5(t *testing.T) {
 			want:    "",
 			wantErr: true,
 		},
+		{
+			args:    args{filename: "not_exists_file.noexists"},
+			want:    "",
+			wantErr: true,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -162,6 +177,11 @@ func TestCrc32(t *testing.T) {
 		},
 		{
 			args:    args{filename: "."},
+			want:    "",
+			wantErr: true,
+		},
+		{
+			args:    args{filename: "not_exists_file.noexists"},
 			want:    "",
 			wantErr: true,
 		},
