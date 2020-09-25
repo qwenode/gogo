@@ -9,8 +9,5 @@ GoGo is Golang Utility Toolbox
 
 
 ## License
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fqwenode%2Fgogo.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fqwenode%2Fgogo?ref=badge_large)
-
-## License
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fqwenode%2Fgogo.svg?type=large)](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fqwenode%2Fgogo.svg?ref=badge_large)
 
