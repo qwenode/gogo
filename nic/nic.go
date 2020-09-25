@@ -13,7 +13,6 @@ func GetAllBindAddress() []net.IP {
 		list = append(list, ip)
 	}
 	return list
-	//fmt.Println(ipList)
 }
 
 func GetAllIPV4BindAddress() []net.IP {

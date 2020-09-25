@@ -10,7 +10,11 @@ func TestGetAllBindAddress(t *testing.T) {
 	tests := []struct {
 		name string
 		want []net.IP
-	}{}
+	}{
+		{
+			want: GetAllBindAddress(),
+		},
+	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := GetAllBindAddress(); !reflect.DeepEqual(got, tt.want) {
@@ -26,7 +30,7 @@ func TestGetAllIPV4BindAddress(t *testing.T) {
 		want []net.IP
 	}{
 		{
-			want: []net.IP{},
+			want: GetAllIPV4BindAddress(),
 		},
 	}
 	for _, tt := range tests {
