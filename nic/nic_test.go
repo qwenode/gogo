@@ -52,7 +52,6 @@ func TestIsIPv4IntranetAddress(t *testing.T) {
 		want bool
 	}{
 		{
-			name: "测试127.0.0.1",
 			args: args{ip: "127.0.0.1"},
 			want: true,
 		},

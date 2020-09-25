@@ -19,10 +19,9 @@ func GetAllIPV4BindAddress() []net.IP {
 	all := GetAllBindAddress()
 	list := make([]net.IP, 0)
 	for _, ip := range all {
-		if IsIPv4IntranetAddress(ip) {
-			continue
+		if !IsIPv4IntranetAddress(ip) {
+			list = append(list, ip)
 		}
-		list = append(list, ip)
 	}
 	return list
 }
