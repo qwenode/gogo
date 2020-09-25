@@ -42,7 +42,7 @@ func TestWriteFileAppend(t *testing.T) {
 
 func TestSha1(t *testing.T) {
 	type args struct {
-		fileName string
+		filename string
 	}
 	sha1, _ := Sha1("file.go")
 	tests := []struct {
@@ -52,24 +52,94 @@ func TestSha1(t *testing.T) {
 		wantErr bool
 	}{
 		{
-			args: args{fileName: "file.go"},
+			args: args{filename: "file.go"},
 			want: sha1,
 		},
 		{
-			args:    args{fileName: "."},
+			args:    args{filename: "."},
 			want:    "",
 			wantErr: true,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := Sha1(tt.args.fileName)
+			got, err := Sha1(tt.args.filename)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Sha1() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
 			if got != tt.want {
 				t.Errorf("Sha1() got = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestSha256(t *testing.T) {
+	type args struct {
+		filename string
+	}
+	sha1, _ := Sha256("file.go")
+	tests := []struct {
+		name    string
+		args    args
+		want    string
+		wantErr bool
+	}{
+		{
+			args: args{filename: "file.go"},
+			want: sha1,
+		},
+		{
+			args:    args{filename: "."},
+			want:    "",
+			wantErr: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := Sha256(tt.args.filename)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("Sha256() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if got != tt.want {
+				t.Errorf("Sha256() got = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestMd5(t *testing.T) {
+	type args struct {
+		filename string
+	}
+	sha1, _ := Md5("file.go")
+	tests := []struct {
+		name    string
+		args    args
+		want    string
+		wantErr bool
+	}{
+		{
+			args: args{filename: "file.go"},
+			want: sha1,
+		},
+		{
+			args:    args{filename: "."},
+			want:    "",
+			wantErr: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := Md5(tt.args.filename)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("Md5() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if got != tt.want {
+				t.Errorf("Md5() got = %v, want %v", got, tt.want)
 			}
 		})
 	}
