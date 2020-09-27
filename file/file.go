@@ -11,12 +11,12 @@ import (
 )
 
 // Append content to the end of the file
-func WriteFileAppend(filename string, c []byte) error {
+func WriteFileAppend(filename string, content []byte) error {
 	f, err := os.OpenFile(filename, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
 	if err != nil {
 		return err
 	}
-	_, err = f.Write(c)
+	_, err = f.Write(content)
 	if err1 := f.Close(); err == nil {
 		err = err1
 	}
