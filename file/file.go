@@ -10,6 +10,7 @@ import (
 	"os"
 )
 
+// Append content to the end of the file
 func WriteFileAppend(filename string, c []byte) error {
 	f, err := os.OpenFile(filename, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
 	if err != nil {
