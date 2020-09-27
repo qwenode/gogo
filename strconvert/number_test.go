@@ -4,7 +4,7 @@ import "testing"
 
 func TestToInt(t *testing.T) {
 	type args struct {
-		str string
+		str interface{}
 	}
 	tests := []struct {
 		name string
@@ -17,6 +17,34 @@ func TestToInt(t *testing.T) {
 		},
 		{
 			args: args{str: "x111"},
+			want: 0,
+		},
+		{
+			args: args{str: 0.33},
+			want: 0,
+		},
+		{
+			args: args{str: 1.33},
+			want: 1,
+		},
+		{
+			args: args{str: 1.55},
+			want: 1,
+		},
+		{
+			args: args{str: int64(22)},
+			want: 22,
+		},
+		{
+			args: args{str: float32(22.2)},
+			want: 22,
+		},
+		{
+			args: args{str: 1},
+			want: 1,
+		},
+		{
+			args: args{str: args{str: "x"}},
 			want: 0,
 		},
 	}
