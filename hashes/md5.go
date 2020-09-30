@@ -6,6 +6,5 @@ import (
 )
 
 func Md5(str string) string {
-	byteStr := md52.Sum([]byte(str))
-	return fmt.Sprintf("%x", byteStr)
+	return fmt.Sprintf("%x", md52.Sum([]byte(str)))
 }

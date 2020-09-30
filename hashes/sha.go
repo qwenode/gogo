@@ -8,15 +8,12 @@ import (
 )
 
 func Sha1(str string) string {
-	byteString := sha12.Sum([]byte(str))
-	return fmt.Sprintf("%x", byteString)
+	return fmt.Sprintf("%x", sha12.Sum([]byte(str)))
 }
 
 func Sha256(str string) string {
-	byteString := sha256.Sum256([]byte(str))
-	return fmt.Sprintf("%x", byteString)
+	return fmt.Sprintf("%x", sha256.Sum256([]byte(str)))
 }
 func Sha512(str string) string {
-	byteString := sha512.Sum512([]byte(str))
-	return fmt.Sprintf("%x", byteString)
+	return fmt.Sprintf("%x", sha512.Sum512([]byte(str)))
 }
