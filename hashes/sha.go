@@ -8,21 +8,15 @@ import (
 )
 
 func Sha1(str string) string {
-	hash := sha12.New()
-	hash.Write([]byte(str))
-	byteString := hash.Sum(nil)
+	byteString := sha12.Sum([]byte(str))
 	return fmt.Sprintf("%x", byteString)
 }
 
 func Sha256(str string) string {
-	hash := sha256.New()
-	hash.Write([]byte(str))
-	byteString := hash.Sum(nil)
+	byteString := sha256.Sum256([]byte(str))
 	return fmt.Sprintf("%x", byteString)
 }
 func Sha512(str string) string {
-	hash := sha512.New()
-	hash.Write([]byte(str))
-	byteString := hash.Sum(nil)
+	byteString := sha512.Sum512([]byte(str))
 	return fmt.Sprintf("%x", byteString)
 }

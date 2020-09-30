@@ -6,8 +6,6 @@ import (
 )
 
 func Md5(str string) string {
-	hash := md52.New()
-	hash.Write([]byte(str))
-	byteStr := hash.Sum(nil)
+	byteStr := md52.Sum([]byte(str))
 	return fmt.Sprintf("%x", byteStr)
 }
