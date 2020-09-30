@@ -6,7 +6,7 @@ GoGo is Golang Utility Toolbox
 [![codecov](https://codecov.io/gh/qwenode/gogo/branch/master/graph/badge.svg)](https://codecov.io/gh/qwenode/gogo)
 [![GitHub license](https://img.shields.io/github/license/qwenode/gogo)](https://github.com/qwenode/gogo/blob/master/LICENSE)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fqwenode%2Fgogo.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fqwenode%2Fgogo?ref=badge_shield)
-
+[![PkgGoDev](https://pkg.go.dev/badge/qwenode/gogo)](https://pkg.go.dev/qwenode/gogo)
 
 ## License
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fqwenode%2Fgogo.svg?type=large)](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fqwenode%2Fgogo.svg?ref=badge_large)
