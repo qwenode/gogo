@@ -23,8 +23,13 @@ func HostName(u string) string {
 	if parse == nil {
 		return ""
 	}
+	host := parse.Hostname()
+	isWide := strings.Index(host, "*.") == 0
 	match := regexp.MustCompile(`([a-zA-Z0-9.-]+)`)
-	r := match.FindString(parse.Hostname())
+	r := strings.TrimLeft(match.FindString(host), ".")
+	if isWide {
+		r = "*." + r
+	}
 	return r
 }
 
