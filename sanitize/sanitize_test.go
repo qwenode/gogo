@@ -132,3 +132,54 @@ func TestAlphabetWithoutSpace(t *testing.T) {
 		})
 	}
 }
+
+func TestHostName(t *testing.T) {
+	type args struct {
+		u string
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			args: args{u: "http://www.amazon.com/"},
+			want: "www.amazon.com",
+		},
+		{
+			args: args{u: "http://www.amazon.com:883/xxxx"},
+			want: "www.amazon.com",
+		},
+		{
+			args: args{u: "https://amazon.com:333/"},
+			want: "amazon.com",
+		},
+		{
+			args: args{u: "www.amazon.com:883/xxx"},
+			want: "www.amazon.com",
+		},
+		{
+			args: args{u: "aaaa@www.amazon.com:883/xxx"},
+			want: "www.amazon.com",
+		},
+		{
+			args: args{u: "ftp://aaaa@www.amazon.com:883/xxx?xx=1"},
+			want: "www.amazon.com",
+		},
+		{
+			args: args{u: "://xx"},
+			want: "",
+		},
+		{
+			args: args{u: "xxxxx"},
+			want: "xxxxx",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := HostName(tt.args.u); got != tt.want {
+				t.Errorf("HostName() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

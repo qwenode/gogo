@@ -1,6 +1,7 @@
 package sanitize
 
 import (
+	"net/url"
 	"regexp"
 	"strconv"
 	"strings"
@@ -11,6 +12,17 @@ func Int(str string) int {
 	r := sanitize.FindAllString(str, -1)
 	i, _ := strconv.Atoi(strings.Join(r, ""))
 	return i
+}
+
+func HostName(u string) string {
+	if strings.Index(u, "://") < 0 {
+		u = "http://" + u
+	}
+	parse, _ := url.Parse(u)
+	if parse == nil {
+		return ""
+	}
+	return parse.Hostname()
 }
 
 func Float64(str string) float64 {
