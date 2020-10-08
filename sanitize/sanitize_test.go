@@ -177,6 +177,13 @@ func TestHostName(t *testing.T) {
 		{
 			args: args{u: "xxxxx"},
 			want: "xxxxx",
+		}, {
+			args: args{u: "xxxxx<"},
+			want: "xxxxx",
+		},
+		{
+			args: args{u: "xxxxx)$"},
+			want: "xxxxx",
 		},
 		{
 			args: args{u: "1.1.1.1:22"},

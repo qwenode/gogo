@@ -23,7 +23,9 @@ func HostName(u string) string {
 	if parse == nil {
 		return ""
 	}
-	return parse.Hostname()
+	match := regexp.MustCompile(`([a-zA-Z0-9.-]+)`)
+	r := match.FindString(parse.Hostname())
+	return r
 }
 
 func Float64(str string) float64 {
