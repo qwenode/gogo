@@ -174,6 +174,10 @@ func TestHostName(t *testing.T) {
 			args: args{u: "xxxxx"},
 			want: "xxxxx",
 		},
+		{
+			args: args{u: "1.1.1.1:22"},
+			want: "1.1.1.1",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
