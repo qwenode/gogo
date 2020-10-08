@@ -163,6 +163,10 @@ func TestHostName(t *testing.T) {
 			want: "www.amazon.com",
 		},
 		{
+			args: args{u: " aaaa@www.amazon.com:883/xxx "},
+			want: "www.amazon.com",
+		},
+		{
 			args: args{u: "ftp://aaaa@www.amazon.com:883/xxx?xx=1"},
 			want: "www.amazon.com",
 		},

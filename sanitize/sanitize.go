@@ -15,6 +15,7 @@ func Int(str string) int {
 }
 
 func HostName(u string) string {
+	u = strings.TrimSpace(u)
 	if strings.Index(u, "://") < 0 {
 		u = "http://" + u
 	}
