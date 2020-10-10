@@ -1,5 +1,6 @@
 # gogo
 GoGo is Golang Utility Toolbox
+一位老道长总结多年的实用法术!值得一用!!!
 
 [![GitHub tag (latest SemVer pre-release)](https://img.shields.io/github/v/tag/qwenode/gogo?include_prereleases)](https://github.com/qwenode/gogo/releases)
 [![Build Status](https://github.com/qwenode/gogo/workflows/Go/badge.svg)](https://github.com/qwenode/gogo/actions?query=workflow%3AGo)
