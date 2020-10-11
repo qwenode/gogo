@@ -142,7 +142,7 @@ func TestGetEndOfTheDayByInt(t *testing.T) {
 			want: GetEndOfTheDayByInt(1602431999),
 		}, {
 			args: args{unix: 1602313200},
-			want: GetBeginOfTheDayByInt(1602345599),
+			want: GetEndOfTheDayByInt(1602345599),
 		},
 		{
 			args: args{unix: 12259200},
