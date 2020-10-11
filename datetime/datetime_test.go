@@ -37,3 +37,123 @@ func TestGetCurrentTime(t *testing.T) {
 		})
 	}
 }
+
+func TestGetBeginOfTheDayByInt64(t *testing.T) {
+	type args struct {
+		unix int64
+	}
+	tests := []struct {
+		name string
+		args args
+		want int64
+	}{
+		{
+			args: args{unix: 1602426827},
+			want: 1602345600,
+		}, {
+			args: args{unix: 1602313200},
+			want: 1602259200,
+		},
+		{
+			args: args{unix: 12259200},
+			want: 0,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := GetBeginOfTheDayByInt64(tt.args.unix); got != tt.want {
+				t.Errorf("GetBeginOfTheDayByInt64() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestGetBeginOfTheDayByInt(t *testing.T) {
+	type args struct {
+		unix int
+	}
+	tests := []struct {
+		name string
+		args args
+		want int
+	}{
+		{
+			args: args{unix: 1602426827},
+			want: 1602345600,
+		}, {
+			args: args{unix: 1602313200},
+			want: 1602259200,
+		},
+		{
+			args: args{unix: 12259200},
+			want: 0,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := GetBeginOfTheDayByInt(tt.args.unix); got != tt.want {
+				t.Errorf("GetBeginOfTheDayByInt() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestGetEndOfTheDayByInt64(t *testing.T) {
+	type args struct {
+		unix int64
+	}
+	tests := []struct {
+		name string
+		args args
+		want int64
+	}{
+		{
+			args: args{unix: 1602426827},
+			want: 1602431999,
+		}, {
+			args: args{unix: 1602313200},
+			want: 1602345599,
+		},
+		{
+			args: args{unix: 12259200},
+			want: 0,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := GetEndOfTheDayByInt64(tt.args.unix); got != tt.want {
+				t.Errorf("GetEndOfTheDayByInt64() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestGetEndOfTheDayByInt(t *testing.T) {
+	type args struct {
+		unix int
+	}
+	tests := []struct {
+		name string
+		args args
+		want int
+	}{
+		{
+			args: args{unix: 1602426827},
+			want: 1602431999,
+		}, {
+			args: args{unix: 1602313200},
+			want: 1602345599,
+		},
+		{
+			args: args{unix: 12259200},
+			want: 0,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := GetEndOfTheDayByInt(tt.args.unix); got != tt.want {
+				t.Errorf("GetEndOfTheDayByInt() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

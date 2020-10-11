@@ -10,3 +10,31 @@ func GetUnixTime() int64 {
 func GetCurrentTime() string {
 	return time.Now().Format("2006-01-02 15:04:05")
 }
+
+// convert 2020-10-10 21:22:33 to 2020-10-10 00:00:00
+func GetBeginOfTheDayByInt64(unix int64) int64 {
+	if unix < 100000000 {
+		return 0
+	}
+	format := time.Unix(unix, 0).Format("2006-01-02")
+	parse, _ := time.ParseInLocation("2006-01-02", format, time.Local)
+	return parse.Unix()
+}
+
+// convert 2020-10-10 21:22:33 to 2020-10-10 00:00:00
+func GetBeginOfTheDayByInt(unix int) int {
+	return int(GetBeginOfTheDayByInt64(int64(unix)))
+}
+
+// convert 2020-10-10 21:22:33 to 2020-10-10 23:59:59
+func GetEndOfTheDayByInt64(unix int64) int64 {
+	if unix < 100000000 {
+		return 0
+	}
+	return GetBeginOfTheDayByInt64(unix) + 86399
+}
+
+// convert 2020-10-10 21:22:33 to 2020-10-10 23:59:59
+func GetEndOfTheDayByInt(unix int) int {
+	return int(GetEndOfTheDayByInt64(int64(unix)))
+}
