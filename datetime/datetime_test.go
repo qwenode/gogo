@@ -49,10 +49,10 @@ func TestGetBeginOfTheDayByInt64(t *testing.T) {
 	}{
 		{
 			args: args{unix: 1602426827},
-			want: GetBeginOfTheDayByInt64(1602345600),
+			want: GetBeginOfTheDayByInt64(1602426827),
 		}, {
 			args: args{unix: 1602313200},
-			want: GetBeginOfTheDayByInt64(1602259200),
+			want: GetBeginOfTheDayByInt64(1602313200),
 		},
 		{
 			args: args{unix: 12259200},
@@ -79,10 +79,10 @@ func TestGetBeginOfTheDayByInt(t *testing.T) {
 	}{
 		{
 			args: args{unix: 1602426827},
-			want: GetBeginOfTheDayByInt(1602345600),
+			want: GetBeginOfTheDayByInt(1602426827),
 		}, {
 			args: args{unix: 1602313200},
-			want: GetBeginOfTheDayByInt(1602259200),
+			want: GetBeginOfTheDayByInt(1602313200),
 		},
 		{
 			args: args{unix: 12259200},
@@ -109,10 +109,10 @@ func TestGetEndOfTheDayByInt64(t *testing.T) {
 	}{
 		{
 			args: args{unix: 1602426827},
-			want: GetEndOfTheDayByInt64(1602431999),
+			want: GetEndOfTheDayByInt64(1602426827),
 		}, {
 			args: args{unix: 1602313200},
-			want: GetEndOfTheDayByInt64(1602345599),
+			want: GetEndOfTheDayByInt64(1602313200),
 		},
 		{
 			args: args{unix: 12259200},
@@ -139,10 +139,10 @@ func TestGetEndOfTheDayByInt(t *testing.T) {
 	}{
 		{
 			args: args{unix: 1602426827},
-			want: GetEndOfTheDayByInt(1602431999),
+			want: GetEndOfTheDayByInt(1602426827),
 		}, {
 			args: args{unix: 1602313200},
-			want: GetEndOfTheDayByInt(1602345599),
+			want: GetEndOfTheDayByInt(1602313200),
 		},
 		{
 			args: args{unix: 12259200},
