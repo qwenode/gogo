@@ -123,6 +123,10 @@ func TestAlphabetWithoutSpace(t *testing.T) {
 			args: args{str: "  "},
 			want: "",
 		},
+		{
+			args: args{str: "wef|2"},
+			want: "wef",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -203,6 +207,76 @@ func TestHostName(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := HostName(tt.args.u); got != tt.want {
 				t.Errorf("HostName() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestAlphabetNumber(t *testing.T) {
+	type args struct {
+		str string
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			args: args{str: "HKD 39.79+"},
+			want: "HKD 3979",
+		},
+		{
+			args: args{str: "HKD 39.79+ test"},
+			want: "HKD 3979 test",
+		},
+		{
+			args: args{str: "   "},
+			want: "",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := AlphabetNumber(tt.args.str); got != tt.want {
+				t.Errorf("AlphabetNumber() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestAlphabetNumberWithoutSpace(t *testing.T) {
+	type args struct {
+		str string
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			args: args{str: "HKD 39.79+"},
+			want: "HKD3979",
+		},
+		{
+			args: args{str: "HKD 39.79+ test"},
+			want: "HKD3979test",
+		},
+		{
+			args: args{str: "HKD t39.tt79+ test"},
+			want: "HKDt39tt79test",
+		},
+		{
+			args: args{str: "  "},
+			want: "",
+		},
+		{
+			args: args{str: "wef|2"},
+			want: "wef2",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := AlphabetNumberWithoutSpace(tt.args.str); got != tt.want {
+				t.Errorf("AlphabetNumberWithoutSpace() = %v, want %v", got, tt.want)
 			}
 		})
 	}

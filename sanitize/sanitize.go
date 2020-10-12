@@ -57,3 +57,18 @@ func AlphabetWithoutSpace(str string) string {
 	s := strings.Join(r, "")
 	return strings.TrimSpace(s)
 }
+
+func AlphabetNumber(str string) string {
+	sanitize, _ := regexp.Compile("([a-zA-Z0-9 ]+)")
+	r := sanitize.FindAllString(str, -1)
+	s := strings.Join(r, "")
+	s = strings.Join(strings.Fields(s), " ")
+	return s
+}
+
+func AlphabetNumberWithoutSpace(str string) string {
+	sanitize, _ := regexp.Compile("([a-zA-Z0-9]+)")
+	r := sanitize.FindAllString(str, -1)
+	s := strings.Join(r, "")
+	return strings.TrimSpace(s)
+}
