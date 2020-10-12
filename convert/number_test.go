@@ -1,4 +1,4 @@
-package strconvert
+package convert
 
 import "testing"
 
