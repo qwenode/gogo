@@ -296,6 +296,10 @@ func TestDirectoryPath(t *testing.T) {
 			want: "/aaa/bb",
 		},
 		{
+			args: args{path: "//wef"},
+			want: "/wef",
+		},
+		{
 			args: args{path: "///"},
 			want: "/",
 		},
