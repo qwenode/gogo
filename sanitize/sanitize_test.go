@@ -30,6 +30,14 @@ func TestInt(t *testing.T) {
 			},
 			want: 3223,
 		},
+		{
+			args: args{str: "-fe1"},
+			want: -1,
+		},
+		{
+			args: args{str: "-fe0"},
+			want: 0,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -355,6 +363,51 @@ func TestMultipleSpaceToSingle(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := MultipleSpaceToSingle(tt.args.str); got != tt.want {
 				t.Errorf("MultipleSpaceToSingle() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestUInt(t *testing.T) {
+	type args struct {
+		str string
+	}
+	tests := []struct {
+		name string
+		args args
+		want uint
+	}{
+		{
+			args: args{
+				str: "wfew123",
+			},
+			want: 123,
+		},
+		{
+			args: args{
+				str: "wfew1eee",
+			},
+			want: 1,
+		},
+		{
+			args: args{
+				str: "wf32w23gf",
+			},
+			want: 3223,
+		},
+		{
+			args: args{str: "-fe1"},
+			want: 1,
+		},
+		{
+			args: args{str: "-fe0"},
+			want: 0,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := UInt(tt.args.str); got != tt.want {
+				t.Errorf("UInt() = %v, want %v", got, tt.want)
 			}
 		})
 	}

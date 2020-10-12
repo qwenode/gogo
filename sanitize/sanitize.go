@@ -11,7 +11,17 @@ func Int(str string) int {
 	sanitize, _ := regexp.Compile("([0-9]+)")
 	r := sanitize.FindAllString(str, -1)
 	i, _ := strconv.Atoi(strings.Join(r, ""))
+	if strings.Index(str, "-") == 0 && i > 0 {
+		i *= -1
+	}
 	return i
+}
+
+func UInt(str string) uint {
+	sanitize, _ := regexp.Compile("([0-9]+)")
+	r := sanitize.FindAllString(str, -1)
+	i, _ := strconv.Atoi(strings.Join(r, ""))
+	return uint(i)
 }
 
 func HostName(u string) string {
