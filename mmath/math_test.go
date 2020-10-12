@@ -98,3 +98,77 @@ func TestCeilInt64(t *testing.T) {
 		})
 	}
 }
+
+func TestBetweenInt(t *testing.T) {
+	type args struct {
+		val   int
+		start int
+		end   int
+	}
+	tests := []struct {
+		name string
+		args args
+		want bool
+	}{
+		{
+			args: args{
+				val:   1,
+				start: 0,
+				end:   2,
+			},
+			want: true,
+		},
+		{
+			args: args{
+				val:   0,
+				start: 1,
+				end:   2,
+			},
+			want: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := BetweenInt(tt.args.val, tt.args.start, tt.args.end); got != tt.want {
+				t.Errorf("BetweenInt() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestBetweenInt64(t *testing.T) {
+	type args struct {
+		val   int64
+		start int64
+		end   int64
+	}
+	tests := []struct {
+		name string
+		args args
+		want bool
+	}{
+		{
+			args: args{
+				val:   1,
+				start: 0,
+				end:   2,
+			},
+			want: true,
+		},
+		{
+			args: args{
+				val:   0,
+				start: 1,
+				end:   2,
+			},
+			want: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := BetweenInt64(tt.args.val, tt.args.start, tt.args.end); got != tt.want {
+				t.Errorf("BetweenInt64() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

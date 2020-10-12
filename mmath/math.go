@@ -23,3 +23,13 @@ func CeilInt64(first, second int64) int64 {
 	}
 	return int64(math.Ceil(float64(first) / float64(second)))
 }
+
+// return (val >= start && val <= end)
+func BetweenInt(val, start, end int) bool {
+	return val >= start && val <= end
+}
+
+// val >= start && val <= end
+func BetweenInt64(val, start, end int64) bool {
+	return val >= start && val <= end
+}
