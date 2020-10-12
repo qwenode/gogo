@@ -281,3 +281,42 @@ func TestAlphabetNumberWithoutSpace(t *testing.T) {
 		})
 	}
 }
+
+func TestDirectoryPath(t *testing.T) {
+	type args struct {
+		path string
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			args: args{path: "/aaa/bb"},
+			want: "/aaa/bb",
+		},
+		{
+			args: args{path: "//aaa///bb"},
+			want: "/aaa/bb",
+		},
+		{
+			args: args{path: "/.../aaa///bb"},
+			want: "/aaa/bb",
+		},
+		{
+			args: args{path: "/.../aa-_a///bb?"},
+			want: "/aa-_a/bb",
+		},
+		{
+			args: args{path: "/.../aaa/123//bb"},
+			want: "/aaa/123/bb",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := DirectoryPath(tt.args.path); got != tt.want {
+				t.Errorf("DirectoryPath() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

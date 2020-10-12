@@ -72,3 +72,10 @@ func AlphabetNumberWithoutSpace(str string) string {
 	s := strings.Join(r, "")
 	return strings.TrimSpace(s)
 }
+
+func DirectoryPath(path string) string {
+	sanitize, _ := regexp.Compile("([a-zA-Z0-9 \\-_]+)")
+	r := sanitize.FindAllString(path, -1)
+	s := strings.Join(r, "/")
+	return "/" + strings.TrimLeft(strings.TrimSpace(s), "/")
+}
