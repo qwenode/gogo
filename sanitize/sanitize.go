@@ -80,3 +80,9 @@ func DirectoryPath(path string) string {
 	s := strings.Join(r, "/")
 	return "/" + strings.TrimLeft(strings.TrimSpace(s), "/")
 }
+
+func MultipleSpaceToSingle(str string) string {
+	sanitize, _ := regexp.Compile("\\s+")
+	r := sanitize.ReplaceAllString(str, " ")
+	return strings.TrimSpace(r)
+}

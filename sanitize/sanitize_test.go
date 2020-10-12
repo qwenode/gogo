@@ -332,3 +332,30 @@ func TestDirectoryPath(t *testing.T) {
 		})
 	}
 }
+
+func TestMultipleSpaceToSingle(t *testing.T) {
+	type args struct {
+		str string
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			args: args{str: "a   b   c"},
+			want: "a b c",
+		},
+		{
+			args: args{str: "a   b   c   1 22 2 33"},
+			want: "a b c 1 22 2 33",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := MultipleSpaceToSingle(tt.args.str); got != tt.want {
+				t.Errorf("MultipleSpaceToSingle() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
