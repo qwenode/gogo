@@ -16,6 +16,14 @@ func TestSubstr(t *testing.T) {
 		{
 			args: args{
 				str:   "abcdefg",
+				start: -10,
+				end:   2,
+			},
+			want: "ab",
+		},
+		{
+			args: args{
+				str:   "abcdefg",
 				start: 0,
 				end:   2,
 			},
@@ -35,7 +43,7 @@ func TestSubstr(t *testing.T) {
 				start: -1,
 				end:   2,
 			},
-			want: "ab",
+			want: "g",
 		},
 		{
 			args: args{
@@ -43,7 +51,7 @@ func TestSubstr(t *testing.T) {
 				start: -1,
 				end:   12,
 			},
-			want: "abcdefg",
+			want: "g",
 		},
 		{
 			args: args{
@@ -73,9 +81,9 @@ func TestSubstr(t *testing.T) {
 			args: args{
 				str:   "国字",
 				start: 1,
-				end:   2,
+				end:   1,
 			},
-			want: "国字",
+			want: "字",
 		},
 	}
 	for _, tt := range tests {
