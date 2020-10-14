@@ -412,3 +412,58 @@ func TestUInt(t *testing.T) {
 		})
 	}
 }
+
+func TestFilePath(t *testing.T) {
+	type args struct {
+		path string
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			args: args{path: "/aaa/bb"},
+			want: "/aaa/bb",
+		},
+		{
+			args: args{path: "//wef"},
+			want: "/wef",
+		},
+		{
+			args: args{path: "///"},
+			want: "/",
+		},
+		{
+			args: args{path: "??"},
+			want: "/",
+		},
+		{
+			args: args{path: "//aaa///bb"},
+			want: "/aaa/bb",
+		},
+		{
+			args: args{path: "/.../aaa///bb"},
+			want: "/.../aaa/bb",
+		},
+		{
+			args: args{path: "/.../aaa///bb.php"},
+			want: "/.../aaa/bb.php",
+		},
+		{
+			args: args{path: "/.../aa-_a///bb?"},
+			want: "/.../aa-_a/bb",
+		},
+		{
+			args: args{path: "/.../aaa/123//bb"},
+			want: "/.../aaa/123/bb",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := FilePath(tt.args.path); got != tt.want {
+				t.Errorf("FilePath() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

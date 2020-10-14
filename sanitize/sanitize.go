@@ -91,6 +91,14 @@ func DirectoryPath(path string) string {
 	return "/" + strings.TrimLeft(strings.TrimSpace(s), "/")
 }
 
+// ATTENTION! if fail default return "/"
+func FilePath(path string) string {
+	sanitize, _ := regexp.Compile("([a-zA-Z0-9\\-_\\.]+)")
+	r := sanitize.FindAllString(path, -1)
+	s := strings.Join(r, "/")
+	return "/" + strings.TrimLeft(strings.TrimSpace(s), "/")
+}
+
 func MultipleSpaceToSingle(str string) string {
 	sanitize, _ := regexp.Compile("\\s+")
 	r := sanitize.ReplaceAllString(str, " ")
