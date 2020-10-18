@@ -1,6 +1,9 @@
 package sanitize
 
-import "testing"
+import (
+	"net/url"
+	"testing"
+)
 
 func TestInt(t *testing.T) {
 	type args struct {
@@ -463,6 +466,33 @@ func TestFilePath(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := FilePath(tt.args.path); got != tt.want {
 				t.Errorf("FilePath() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestStripHtml(t *testing.T) {
+	type args struct {
+		str string
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			args: args{str: "<aa>"},
+			want: "aa",
+		},
+		{
+			args: args{str: url.PathEscape("<aa></bb>")},
+			want: "aa%2Fbb",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := StripHtml(tt.args.str); got != tt.want {
+				t.Errorf("StripHtml() = %v, want %v", got, tt.want)
 			}
 		})
 	}
