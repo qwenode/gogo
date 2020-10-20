@@ -217,6 +217,13 @@ func TestExist(t *testing.T) {
 			args: args{filename: "fff.go"},
 			want: false,
 		},
+		{
+			args: args{filename: "../file/"},
+			want: true,
+		}, {
+			args: args{filename: "../filexx/"},
+			want: false,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
