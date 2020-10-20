@@ -99,12 +99,14 @@ func FilePath(path string) string {
 	return "/" + strings.TrimLeft(strings.TrimSpace(s), "/")
 }
 
+// aa  bbb to aa bbb
 func MultipleSpaceToSingle(str string) string {
 	sanitize, _ := regexp.Compile("\\s+")
 	r := sanitize.ReplaceAllString(str, " ")
 	return strings.TrimSpace(r)
 }
 
+// remove > < %
 func StripHtml(str string) string {
 	str = strings.ReplaceAll(str, "<", "")
 	str = strings.ReplaceAll(str, ">", "")
