@@ -199,3 +199,30 @@ func TestCrc32(t *testing.T) {
 		})
 	}
 }
+
+func TestExist(t *testing.T) {
+	type args struct {
+		filename string
+	}
+	tests := []struct {
+		name string
+		args args
+		want bool
+	}{
+		{
+			args: args{filename: "file.go"},
+			want: true,
+		},
+		{
+			args: args{filename: "fff.go"},
+			want: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := Exist(tt.args.filename); got != tt.want {
+				t.Errorf("Exist() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

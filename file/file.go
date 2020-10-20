@@ -10,6 +10,17 @@ import (
 	"os"
 )
 
+// check file is exist
+func Exist(filename string) bool {
+	_, err := os.Stat(filename)
+	if err != nil {
+		if os.IsNotExist(err) {
+			return false
+		}
+	}
+	return true
+}
+
 // Append content to the end of the file
 func WriteFileAppend(filename string, content []byte) error {
 	f, err := os.OpenFile(filename, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
