@@ -497,3 +497,26 @@ func TestStripHtml(t *testing.T) {
 		})
 	}
 }
+
+func TestRemoveAllSpace(t *testing.T) {
+	type args struct {
+		str string
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			args: args{str: "aa ,b b"},
+			want: "aa,bb",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := RemoveAllSpace(tt.args.str); got != tt.want {
+				t.Errorf("RemoveAllSpace() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

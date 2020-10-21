@@ -106,6 +106,13 @@ func MultipleSpaceToSingle(str string) string {
 	return strings.TrimSpace(r)
 }
 
+// replace aa, bb to aa,bb
+func RemoveAllSpace(str string) string {
+	sanitize, _ := regexp.Compile("\\s+")
+	r := sanitize.ReplaceAllString(str, "")
+	return strings.TrimSpace(r)
+}
+
 // remove > < %
 func StripHtml(str string) string {
 	str = strings.ReplaceAll(str, "<", "")
