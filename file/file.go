@@ -7,8 +7,20 @@ import (
 	"fmt"
 	"hash/crc32"
 	"io"
+	"io/ioutil"
 	"os"
 )
+
+func GetContents(filename string) string {
+	if !Exist(filename) {
+		return ""
+	}
+	file, err := ioutil.ReadFile(filename)
+	if err != nil {
+		return ""
+	}
+	return string(file)
+}
 
 // check file or dir if exists
 func Exist(filename string) bool {

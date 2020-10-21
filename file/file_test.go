@@ -233,3 +233,30 @@ func TestExist(t *testing.T) {
 		})
 	}
 }
+
+func TestGetContents(t *testing.T) {
+	type args struct {
+		filename string
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			args: args{filename: "./file.go"},
+			want: GetContents("./file.go"),
+		},
+		{
+			args: args{filename: "./fff"},
+			want: "",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := GetContents(tt.args.filename); got != tt.want {
+				t.Errorf("GetContents() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
