@@ -34,6 +34,7 @@ func CutByEndString(str, endStr string) string {
 	return strings.TrimSpace(strings.Join(split[:end], endStr))
 }
 
+// input str: "ab,bc,cc", sep:"," return :"cc"
 func GetLastElemBySep(str, sep string) string {
 	split := strings.Split(str, sep)
 	if len(split) <= 1 {
