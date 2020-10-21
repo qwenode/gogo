@@ -23,6 +23,8 @@ func Substr(str string, start, length int) string {
 	return string(s[begin:end])
 }
 
+// input str:"Pure organic linen fabrics, clothes and roses that last by LinenRoses" endStr:"by"
+// return: "Pure organic linen fabrics, clothes and roses that last"
 func CutByEndString(str, endStr string) string {
 	split := strings.Split(str, endStr)
 	end := len(split) - 1
@@ -30,4 +32,12 @@ func CutByEndString(str, endStr string) string {
 		end = 1
 	}
 	return strings.TrimSpace(strings.Join(split[:end], endStr))
+}
+
+func GetLastElemBySep(str, sep string) string {
+	split := strings.Split(str, sep)
+	if len(split) <= 1 {
+		return str
+	}
+	return strings.TrimSpace(split[len(split)-1])
 }
