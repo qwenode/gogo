@@ -1,5 +1,7 @@
 package str
 
+import "strings"
+
 func Substr(str string, start, length int) string {
 
 	s := []rune(str)
@@ -19,4 +21,13 @@ func Substr(str string, start, length int) string {
 		return str
 	}
 	return string(s[begin:end])
+}
+
+func CutByEndString(str, endStr string) string {
+	split := strings.Split(str, endStr)
+	end := len(split) - 1
+	if end < 1 {
+		end = 1
+	}
+	return strings.TrimSpace(strings.Join(split[:end], endStr))
 }

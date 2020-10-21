@@ -94,3 +94,37 @@ func TestSubstr(t *testing.T) {
 		})
 	}
 }
+
+func TestCutByEndString(t *testing.T) {
+	type args struct {
+		str    string
+		endStr string
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			args: args{
+				str:    "Pure organic linen fabrics, clothes and roses that last by LinenRoses",
+				endStr: "by",
+			},
+			want: "Pure organic linen fabrics, clothes and roses that last",
+		},
+		{
+			args: args{
+				str:    "Pure organic linen fabrics, clothes and roses that last",
+				endStr: "by",
+			},
+			want: "Pure organic linen fabrics, clothes and roses that last",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := CutByEndString(tt.args.str, tt.args.endStr); got != tt.want {
+				t.Errorf("CutByEndString() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
