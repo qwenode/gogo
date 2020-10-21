@@ -114,5 +114,5 @@ func StripHtml(str string) string {
 	str = strings.ReplaceAll(str, "%3E", "")
 	str = strings.ReplaceAll(str, "%3C", "")
 	str = strings.ReplaceAll(str, "%3c", "")
-	return str
+	return strings.TrimSpace(str)
 }
