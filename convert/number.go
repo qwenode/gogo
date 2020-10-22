@@ -87,3 +87,25 @@ func ToInt64(str interface{}) int64 {
 		return 0
 	}
 }
+
+func ToFloat64(str interface{}) float64 {
+	switch str.(type) {
+	case uint64:
+		return float64(str.(uint64))
+	case uint:
+		return float64(str.(uint))
+	case int:
+		return float64(str.(int))
+	case int64:
+		return float64(str.(int64))
+	case string:
+		float, _ := strconv.ParseFloat(ToString(str), 64)
+		return float
+	case float64:
+		return str.(float64)
+	case float32:
+		return float64(str.(float32))
+	default:
+		return float64(0)
+	}
+}

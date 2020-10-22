@@ -277,3 +277,74 @@ func TestToUInt64(t *testing.T) {
 		})
 	}
 }
+
+func TestToFloat64(t *testing.T) {
+	type args struct {
+		str interface{}
+	}
+	tests := []struct {
+		name string
+		args args
+		want float64
+	}{
+		{
+			args: args{str: "111"},
+			want: 111,
+		},
+		{
+			args: args{str: "x111"},
+			want: 0,
+		},
+		{
+			args: args{str: 0.33},
+			want: 0.33,
+		},
+		{
+			args: args{str: 1.33},
+			want: 1.33,
+		},
+		{
+			args: args{str: 1.55},
+			want: 1.55,
+		},
+		{
+			args: args{str: int64(22)},
+			want: 22,
+		},
+		{
+			args: args{str: float64(22.21)},
+			want: 22.21,
+		},
+		{
+			args: args{str: float32(22.21)},
+			want: 22.209999084472656,
+		},
+		{
+			args: args{str: uint(1)},
+			want: 1,
+		},
+		{
+			args: args{str: int(1)},
+			want: 1,
+		},
+		{
+			args: args{str: int64(1)},
+			want: 1,
+		},
+		{
+			args: args{str: uint64(1)},
+			want: 1,
+		},
+		{
+			args: args{str: args{str: "x"}},
+			want: 0,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := ToFloat64(tt.args.str); got != tt.want {
+				t.Errorf("ToFloat64() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
