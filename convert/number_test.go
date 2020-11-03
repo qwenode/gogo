@@ -63,6 +63,14 @@ func TestToInt(t *testing.T) {
 			args: args{str: args{str: "x"}},
 			want: 0,
 		},
+		{
+			args: args{str: true},
+			want: 1,
+		},
+		{
+			args: args{str: false},
+			want: 0,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

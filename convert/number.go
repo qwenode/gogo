@@ -19,6 +19,11 @@ func ToInt(str interface{}) int {
 		return int(str.(float64))
 	case float32:
 		return int(str.(float32))
+	case bool:
+		if str.(bool) {
+			return 1
+		}
+		return 0
 	default:
 		return 0
 	}
