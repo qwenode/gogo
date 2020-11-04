@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-// get Goroutine id
+// GoroutineID get Goroutine id
 // But it should be noted that get Stack information will affect performance,
 // so it is recommended that you only use it when debugging.
 func GoroutineID() int {

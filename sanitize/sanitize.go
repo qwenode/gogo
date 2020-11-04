@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// Int sanitize string to int ,exp: 1s2d3 out:123
 func Int(str string) int {
 	sanitize, _ := regexp.Compile("([0-9]+)")
 	r := sanitize.FindAllString(str, -1)
@@ -17,6 +18,7 @@ func Int(str string) int {
 	return i
 }
 
+// UInt sanitize string to UInt ,exp: 1s2d3 out:123
 func UInt(str string) uint {
 	sanitize, _ := regexp.Compile("([0-9]+)")
 	r := sanitize.FindAllString(str, -1)
@@ -24,6 +26,7 @@ func UInt(str string) uint {
 	return uint(i)
 }
 
+// HostName get hostname by given string
 func HostName(u string) string {
 	u = strings.TrimSpace(u)
 	if strings.Index(u, "://") < 0 {
@@ -46,6 +49,7 @@ func HostName(u string) string {
 	return r
 }
 
+// Float64 sanitize string to float
 func Float64(str string) float64 {
 	sanitize, _ := regexp.Compile("([0-9.]+)")
 	r := sanitize.FindAllString(str, -1)
@@ -53,6 +57,7 @@ func Float64(str string) float64 {
 	return float
 }
 
+// Alphabet sanitize string , exp: 1s2s3 out:ss
 func Alphabet(str string) string {
 	sanitize, _ := regexp.Compile("([a-zA-Z ]+)")
 	r := sanitize.FindAllString(str, -1)
@@ -61,6 +66,7 @@ func Alphabet(str string) string {
 	return s
 }
 
+// AlphabetWithoutSpace sanitize string , exp: 1s2s 3# out:ss
 func AlphabetWithoutSpace(str string) string {
 	sanitize, _ := regexp.Compile("([a-zA-Z]+)")
 	r := sanitize.FindAllString(str, -1)
@@ -68,6 +74,7 @@ func AlphabetWithoutSpace(str string) string {
 	return strings.TrimSpace(s)
 }
 
+// AlphabetNumber sanitize string , exp: 1s2s 3# out:1s2s 3
 func AlphabetNumber(str string) string {
 	sanitize, _ := regexp.Compile("([a-zA-Z0-9 ]+)")
 	r := sanitize.FindAllString(str, -1)
@@ -76,6 +83,7 @@ func AlphabetNumber(str string) string {
 	return s
 }
 
+// AlphabetNumberWithoutSpace sanitize string , exp: 1s2s 3# out:1s2s3
 func AlphabetNumberWithoutSpace(str string) string {
 	sanitize, _ := regexp.Compile("([a-zA-Z0-9]+)")
 	r := sanitize.FindAllString(str, -1)
@@ -83,7 +91,7 @@ func AlphabetNumberWithoutSpace(str string) string {
 	return strings.TrimSpace(s)
 }
 
-// ATTENTION! if fail default return "/"
+// DirectoryPath ATTENTION! if fail default return "/"
 func DirectoryPath(path string) string {
 	sanitize, _ := regexp.Compile("([a-zA-Z0-9\\-_]+)")
 	r := sanitize.FindAllString(path, -1)
@@ -91,7 +99,7 @@ func DirectoryPath(path string) string {
 	return "/" + strings.TrimLeft(strings.TrimSpace(s), "/")
 }
 
-// ATTENTION! if fail default return "/"
+// FilePath ATTENTION! if fail default return "/"
 func FilePath(path string) string {
 	sanitize, _ := regexp.Compile("([a-zA-Z0-9\\-_\\.]+)")
 	r := sanitize.FindAllString(path, -1)
@@ -99,21 +107,21 @@ func FilePath(path string) string {
 	return "/" + strings.TrimLeft(strings.TrimSpace(s), "/")
 }
 
-// aa  bbb to aa bbb
+// MultipleSpaceToSingle aa  bbb to aa bbb
 func MultipleSpaceToSingle(str string) string {
 	sanitize, _ := regexp.Compile("\\s+")
 	r := sanitize.ReplaceAllString(str, " ")
 	return strings.TrimSpace(r)
 }
 
-// replace aa, bb to aa,bb
+// RemoveAllSpace replace aa, bb to aa,bb
 func RemoveAllSpace(str string) string {
 	sanitize, _ := regexp.Compile("\\s+")
 	r := sanitize.ReplaceAllString(str, "")
 	return strings.TrimSpace(r)
 }
 
-// remove > < %
+// StripHtml remove > < %
 func StripHtml(str string) string {
 	str = strings.ReplaceAll(str, "<", "")
 	str = strings.ReplaceAll(str, ">", "")
