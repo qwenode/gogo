@@ -11,6 +11,7 @@ import (
 	"os"
 )
 
+// GetContents get file content
 func GetContents(filename string) string {
 	if !Exist(filename) {
 		return ""
@@ -22,7 +23,7 @@ func GetContents(filename string) string {
 	return string(file)
 }
 
-// check file or dir if exists
+// Exist check file or dir if exists
 func Exist(filename string) bool {
 	_, err := os.Stat(filename)
 	if err != nil {
@@ -33,7 +34,7 @@ func Exist(filename string) bool {
 	return true
 }
 
-// Append content to the end of the file
+// WriteFileAppend Append content to the end of the file
 func WriteFileAppend(filename string, content []byte) error {
 	f, err := os.OpenFile(filename, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
 	if err != nil {
