@@ -45,7 +45,7 @@ func WriteFileAppend(filename string, content []byte) error {
 		err = err1
 	}
 
-	return nil
+	return err
 }
 
 func Sha1(filename string) (string, error) {
