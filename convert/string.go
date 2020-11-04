@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+// ToString convert to string
 func ToString(str interface{}) string {
 	switch str.(type) {
 	case int:

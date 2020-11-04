@@ -4,7 +4,7 @@ import (
 	"reflect"
 )
 
-// struct to map
+// ToFieldValueMap struct to map
 func ToFieldValueMap(i interface{}) map[string]interface{} {
 	v := reflect.ValueOf(i)
 	typeV := v.Type()

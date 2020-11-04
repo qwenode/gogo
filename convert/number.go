@@ -2,6 +2,7 @@ package convert
 
 import "strconv"
 
+// ToInt convert to int
 func ToInt(str interface{}) int {
 	switch str.(type) {
 	case uint:
@@ -29,6 +30,7 @@ func ToInt(str interface{}) int {
 	}
 }
 
+// ToUInt convert to uint
 func ToUInt(str interface{}) uint {
 	switch str.(type) {
 	case uint64:
@@ -50,6 +52,8 @@ func ToUInt(str interface{}) uint {
 		return 0
 	}
 }
+
+// ToUInt64 convert to uint64
 func ToUInt64(str interface{}) uint64 {
 	switch str.(type) {
 	case uint64:
@@ -71,6 +75,8 @@ func ToUInt64(str interface{}) uint64 {
 		return 0
 	}
 }
+
+// ToInt64 convert to int64
 func ToInt64(str interface{}) int64 {
 	switch str.(type) {
 	case uint64:
@@ -93,6 +99,7 @@ func ToInt64(str interface{}) int64 {
 	}
 }
 
+// ToFloat64 convert to float64
 func ToFloat64(str interface{}) float64 {
 	switch str.(type) {
 	case uint64:

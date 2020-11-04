@@ -4,6 +4,7 @@ import (
 	"net"
 )
 
+// GetAllBindAddress get all bind interface address
 func GetAllBindAddress() []net.IP {
 	ipList, _ := net.InterfaceAddrs()
 	list := make([]net.IP, 0)
@@ -14,6 +15,7 @@ func GetAllBindAddress() []net.IP {
 	return list
 }
 
+// GetAllIPV4BindAddress get all ipv4 bind address
 func GetAllIPV4BindAddress() []net.IP {
 	all := GetAllBindAddress()
 	list := make([]net.IP, 0)
@@ -25,6 +27,7 @@ func GetAllIPV4BindAddress() []net.IP {
 	return list
 }
 
+// IsIPv4IntranetAddress check is intranet address
 func IsIPv4IntranetAddress(ip interface{}) bool {
 	ipc, ok := ip.(net.IP)
 	if !ok {

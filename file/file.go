@@ -48,6 +48,7 @@ func WriteFileAppend(filename string, content []byte) error {
 	return err
 }
 
+// Sha1 get file sha1 hash
 func Sha1(filename string) (string, error) {
 	f, err := os.Open(filename)
 	if err != nil {
@@ -60,6 +61,8 @@ func Sha1(filename string) (string, error) {
 	}
 	return fmt.Sprintf("%x", h.Sum(nil)), nil
 }
+
+// Sha256 get file sha256 hash
 func Sha256(filename string) (string, error) {
 	f, err := os.Open(filename)
 	if err != nil {
@@ -73,6 +76,7 @@ func Sha256(filename string) (string, error) {
 	return fmt.Sprintf("%x", h.Sum(nil)), nil
 }
 
+// Md5 get file md5 hash
 func Md5(filename string) (string, error) {
 	f, err := os.Open(filename)
 	if err != nil {
@@ -86,6 +90,7 @@ func Md5(filename string) (string, error) {
 	return fmt.Sprintf("%x", h.Sum(nil)), nil
 }
 
+// Crc32 get file crc32 hash
 func Crc32(filename string) (string, error) {
 	f, err := os.Open(filename)
 	if err != nil {

@@ -2,6 +2,7 @@ package datetime
 
 import "time"
 
+// GetUnixTime get current unix time
 func GetUnixTime() int64 {
 	return time.Now().Unix()
 }
