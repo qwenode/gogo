@@ -260,3 +260,30 @@ func TestGetContents(t *testing.T) {
 		})
 	}
 }
+
+func TestGetSize(t *testing.T) {
+	type args struct {
+		fileName string
+	}
+	tests := []struct {
+		name string
+		args args
+		want int64
+	}{
+		{
+			args: args{fileName: "./file.go"},
+			want: GetSize("./file.go"),
+		},
+		{
+			args: args{fileName: "./file.gg"},
+			want: 0,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := GetSize(tt.args.fileName); got != tt.want {
+				t.Errorf("GetSize() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
