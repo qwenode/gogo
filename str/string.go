@@ -43,3 +43,12 @@ func GetLastElemBySep(str, sep string) string {
 	}
 	return strings.TrimSpace(split[len(split)-1])
 }
+
+// GetFirstElemBySep input str: "ab,bc,cc", sep:"," return :"ab"
+func GetFirstElemBySep(str, sep string) string {
+	split := strings.Split(str, sep)
+	if len(split) == 1 {
+		return str
+	}
+	return strings.TrimSpace(split[0])
+}

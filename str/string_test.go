@@ -169,3 +169,44 @@ func TestGetLastElemBySep(t *testing.T) {
 		})
 	}
 }
+
+func TestGetFirstElemBySep(t *testing.T) {
+	type args struct {
+		str string
+		sep string
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			args: args{
+				str: "ab,bc",
+				sep: ",",
+			},
+			want: "ab",
+		},
+		{
+			args: args{
+				str: "abbc",
+				sep: ",",
+			},
+			want: "abbc",
+		},
+		{
+			args: args{
+				str: "ab,bc,cc",
+				sep: ",",
+			},
+			want: "ab",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := GetFirstElemBySep(tt.args.str, tt.args.sep); got != tt.want {
+				t.Errorf("GetFirstElemBySep() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
