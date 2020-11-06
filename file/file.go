@@ -104,3 +104,12 @@ func Crc32(filename string) (string, error) {
 	}
 	return fmt.Sprintf("%x", hash32.Sum(nil)), nil
 }
+
+//GetSize get file size
+func GetSize(fileName string) int64 {
+	stat, err := os.Stat(fileName)
+	if err != nil {
+		return 0
+	}
+	return stat.Size()
+}
