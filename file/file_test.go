@@ -287,3 +287,38 @@ func TestGetSize(t *testing.T) {
 		})
 	}
 }
+
+func TestPutContents(t *testing.T) {
+	type args struct {
+		filename string
+		content  []byte
+	}
+	tests := []struct {
+		name    string
+		args    args
+		wantErr bool
+	}{
+		{
+			args: args{
+				filename: "./a.txt",
+				content:  []byte("abc"),
+			},
+			wantErr: false,
+		},
+		{
+			args: args{
+				filename: "./",
+				content:  []byte("abc"),
+			},
+			wantErr: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if err := PutContents(tt.args.filename, tt.args.content); (err != nil) != tt.wantErr {
+				t.Errorf("PutContents() error = %v, wantErr %v", err, tt.wantErr)
+			}
+		})
+	}
+	os.Remove("./a.txt")
+}

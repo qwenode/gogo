@@ -13,9 +13,6 @@ import (
 
 // GetContents get file content
 func GetContents(filename string) string {
-	if !Exist(filename) {
-		return ""
-	}
 	file, err := ioutil.ReadFile(filename)
 	if err != nil {
 		return ""
@@ -37,6 +34,20 @@ func Exist(filename string) bool {
 // WriteFileAppend Append content to the end of the file
 func WriteFileAppend(filename string, content []byte) error {
 	f, err := os.OpenFile(filename, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
+	if err != nil {
+		return err
+	}
+	_, err = f.Write(content)
+	if err1 := f.Close(); err == nil {
+		err = err1
+	}
+
+	return err
+}
+
+// PutContents put content to the file,will clean old data
+func PutContents(filename string, content []byte) error {
+	f, err := os.OpenFile(filename, os.O_TRUNC|os.O_WRONLY|os.O_CREATE, 0644)
 	if err != nil {
 		return err
 	}
