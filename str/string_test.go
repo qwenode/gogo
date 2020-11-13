@@ -40,6 +40,14 @@ func TestSubstr(t *testing.T) {
 		{
 			args: args{
 				str:   "abcdefg",
+				start: 1,
+				end:   -2,
+			},
+			want: "",
+		},
+		{
+			args: args{
+				str:   "abcdefg",
 				start: -1,
 				end:   2,
 			},
