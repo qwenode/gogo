@@ -4,7 +4,9 @@ import "strings"
 
 // Substr substr with length
 func Substr(str string, start, length int) string {
-
+	if length < 0 {
+		length = 0
+	}
 	s := []rune(str)
 	sLen := len(s)
 	begin := start
@@ -14,6 +16,7 @@ func Substr(str string, start, length int) string {
 	if begin < 0 {
 		begin = 0
 	}
+
 	end := begin + length
 	if end > sLen {
 		end = sLen
