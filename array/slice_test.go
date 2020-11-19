@@ -1,6 +1,9 @@
 package array
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 func TestSliceContainInt(t *testing.T) {
 	type args struct {
@@ -65,6 +68,56 @@ func TestStringInSlice(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := StringInSlice(tt.args.search, tt.args.slice); got != tt.want {
 				t.Errorf("StringInSlice() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestMergeIntRange(t *testing.T) {
+	type args struct {
+		data []IntegerRange
+	}
+	tests := []struct {
+		name string
+		args args
+		want []IntegerRange
+	}{
+		{
+			args: args{data: []IntegerRange{
+				{Low: 0, High: 0}, {1, 0}, {22, 33},
+				{23, 34}, {15, 32}, {15, 22},
+			}},
+			want: []IntegerRange{
+				{Low: 0, High: 0}, {1, 0}, {15, 34},
+			},
+		},
+		{
+			args: args{data: []IntegerRange{}},
+			want: nil,
+		},
+		{
+			args: args{data: []IntegerRange{{12, 0}, {13, 0}}},
+			want: []IntegerRange{{12, 0}, {13, 0}},
+		},
+		{
+			args: args{data: []IntegerRange{{12, 0}}},
+			want: []IntegerRange{{12, 0}},
+		},
+		{
+			args: args{data: []IntegerRange{
+				{Low: 0, High: 0}, {1, 0}, {22, 33},
+				{23, 34}, {15, 32}, {15, 22},
+				{0, 12},
+			}},
+			want: []IntegerRange{
+				{Low: 0, High: 12}, {15, 34},
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := MergeIntRange(tt.args.data); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("MergeIntRange() = %v, want %v", got, tt.want)
 			}
 		})
 	}
