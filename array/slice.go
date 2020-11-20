@@ -41,7 +41,10 @@ func MergeIntRange(data []IntegerRange) []IntegerRange {
 			if m[i].Low < m[j].Low {
 				return true
 			}
-			if m[i].Low == m[j].Low && m[i].High < m[j].High {
+			if m[i].Low <= m[j].Low && m[i].High > m[j].High {
+				return true
+			}
+			if m[i].Low == m[j].Low && m[i].High <= m[j].High {
 				return true
 			}
 			return false

@@ -104,6 +104,22 @@ func TestMergeIntRange(t *testing.T) {
 			want: []IntegerRange{{12, 0}},
 		},
 		{
+			args: args{data: []IntegerRange{{80, 0}, {80, 90}, {80, 88}}},
+			want: []IntegerRange{{80, 90}},
+		},
+		{
+			args: args{data: []IntegerRange{{80, 88}, {80, 90}, {80, 88}}},
+			want: []IntegerRange{{80, 90}},
+		},
+		{
+			args: args{data: []IntegerRange{{80, 0}, {90, 0}}},
+			want: []IntegerRange{{80, 0}, {90, 0}},
+		},
+		{
+			args: args{data: []IntegerRange{{80, 0}, {0, 90}, {0, 0}}},
+			want: []IntegerRange{{0, 90}},
+		},
+		{
 			args: args{data: []IntegerRange{
 				{Low: 0, High: 0}, {1, 0}, {22, 33},
 				{23, 34}, {15, 32}, {15, 22},
