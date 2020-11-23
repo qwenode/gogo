@@ -31,6 +31,15 @@ func Exist(filename string) bool {
 	return true
 }
 
+// Size get file size
+func Size(filename string) int64 {
+	f, err := os.Stat(filename)
+	if err != nil {
+		return 0
+	}
+	return f.Size()
+}
+
 // WriteFileAppend Append content to the end of the file
 func WriteFileAppend(filename string, content []byte) error {
 	f, err := os.OpenFile(filename, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
