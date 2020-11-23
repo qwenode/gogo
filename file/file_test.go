@@ -322,3 +322,30 @@ func TestPutContents(t *testing.T) {
 	}
 	os.Remove("./a.txt")
 }
+
+func TestSize(t *testing.T) {
+	type args struct {
+		filename string
+	}
+	tests := []struct {
+		name string
+		args args
+		want int64
+	}{
+		{
+			args: args{filename: "./file.go"},
+			want: Size("./file.go"),
+		},
+		{
+			args: args{filename: "./file.go.notexists"},
+			want: 0,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := Size(tt.args.filename); got != tt.want {
+				t.Errorf("Size() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
