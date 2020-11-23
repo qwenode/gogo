@@ -11,7 +11,7 @@ func ToString(str interface{}) string {
 	case int:
 		return strconv.Itoa(str.(int))
 	case int64:
-		return fmt.Sprintf("%v")
+		return fmt.Sprintf("%v", str.(int64))
 	case string:
 		return str.(string)
 	case float64:
