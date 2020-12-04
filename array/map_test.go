@@ -6,7 +6,7 @@ import (
 
 func TestGetMapIntKeys(t *testing.T) {
 	type args struct {
-		m map[int]string
+		m map[int]interface{}
 	}
 	tests := []struct {
 		name string
@@ -14,7 +14,7 @@ func TestGetMapIntKeys(t *testing.T) {
 		want []int
 	}{
 		{
-			args: args{m: map[int]string{0: "haha", 2: "ss", 3: "hehe"}},
+			args: args{m: map[int]interface{}{0: "haha", 2: "ss", 3: "hehe"}},
 			want: []int{0, 2, 3},
 		},
 	}
