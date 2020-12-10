@@ -6,8 +6,8 @@ import (
 	"math"
 )
 
+// size key
 const (
-	// size key
 	SIZE_UNIT_BYTE = iota
 	SIZE_UNIT_KILO_BYTE
 	SIZE_UNIT_MEGA_BYTE
@@ -19,8 +19,8 @@ const (
 	SIZE_UNIT_YOTTA_BYTE
 )
 
+// size label
 const (
-	// size label
 	SIZE_UNIT_BYTE_LABEL       = "B"
 	SIZE_UNIT_KILO_BYTE_LABEL  = "KB"
 	SIZE_UNIT_MEGA_BYTE_LABEL  = "MB"
