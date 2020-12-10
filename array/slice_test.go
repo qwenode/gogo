@@ -84,6 +84,16 @@ func TestMergeIntRange(t *testing.T) {
 	}{
 		{
 			args: args{data: []IntegerRange{
+				{80, 0}, {999, 0}, {80, 0},
+				{80, 0}, {80, 0}, {80, 0},
+				{80, 0},
+			}},
+			want: []IntegerRange{
+				{80, 0}, {999, 0},
+			},
+		},
+		{
+			args: args{data: []IntegerRange{
 				{Low: 0, High: 0}, {1, 0}, {22, 33},
 				{23, 34}, {15, 32}, {15, 22},
 			}},

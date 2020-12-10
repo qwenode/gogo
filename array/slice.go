@@ -57,11 +57,14 @@ func MergeIntRange(data []IntegerRange) []IntegerRange {
 			if m[j].High < m[i].High {
 				m[j].High = m[i].High
 			}
+		} else if m[j].High == m[i].High && m[j].Low == m[i].Low {
+			m[j] = m[i]
 		} else {
 			j++
 			m[j] = m[i]
 		}
 
 	}
+
 	return append([]IntegerRange(nil), m[:j+1]...)
 }
