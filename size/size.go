@@ -7,7 +7,8 @@ import (
 )
 
 const (
-	SIZE_UNIT_BYTE = iota // size key
+	// size key
+	SIZE_UNIT_BYTE = iota
 	SIZE_UNIT_KILO_BYTE
 	SIZE_UNIT_MEGA_BYTE
 	SIZE_UNIT_GIGA_BYTE
@@ -19,7 +20,8 @@ const (
 )
 
 const (
-	SIZE_UNIT_BYTE_LABEL       = "B" //size label
+	// size label
+	SIZE_UNIT_BYTE_LABEL       = "B"
 	SIZE_UNIT_KILO_BYTE_LABEL  = "KB"
 	SIZE_UNIT_MEGA_BYTE_LABEL  = "MB"
 	SIZE_UNIT_GIGA_BYTE_LABEL  = "GB"
