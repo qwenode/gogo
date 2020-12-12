@@ -133,3 +133,12 @@ func GetSize(fileName string) int64 {
 	}
 	return stat.Size()
 }
+
+// IsDirectory check file is directory
+func IsDirectory(filename string) bool {
+	stat, err := os.Stat(filename)
+	if err != nil {
+		return false
+	}
+	return stat.IsDir()
+}

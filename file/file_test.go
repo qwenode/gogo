@@ -349,3 +349,30 @@ func TestSize(t *testing.T) {
 		})
 	}
 }
+
+func TestIsDirectory(t *testing.T) {
+	type args struct {
+		filename string
+	}
+	tests := []struct {
+		name string
+		args args
+		want bool
+	}{
+		{
+			args: args{"../file"},
+			want: true,
+		},
+		{
+			args: args{"./xx"},
+			want: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := IsDirectory(tt.args.filename); got != tt.want {
+				t.Errorf("IsDirectory() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
