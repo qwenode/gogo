@@ -25,6 +25,13 @@ func TestDownload(t *testing.T) {
 		},
 		{
 			args: args{
+				url:    "https://www.baidu.com",
+				toFile: "./download_testcase",
+			},
+			want: 1,
+		},
+		{
+			args: args{
 				url:    "https://www.ipip.net",
 				toFile: "/dev/test",
 			},
