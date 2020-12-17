@@ -75,6 +75,10 @@ func TestGetHeaderSize(t *testing.T) {
 			args: args{url: "http://myip.ipip.net/"},
 			want: 10,
 		},
+		{
+			args: args{url: "http://myip.ipip.netx/"},
+			want: 0,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
