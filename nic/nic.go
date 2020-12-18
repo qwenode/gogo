@@ -52,3 +52,33 @@ func IsIPv4IntranetAddress(ip interface{}) bool {
 	}
 	return false
 }
+
+// IsValidIPAddress check given ip address is valid
+func IsValidIPAddress(ip string) bool {
+	ipc := net.ParseIP(ip)
+	if ipc.To4() != nil {
+		return true
+	}
+	if ipc.To16() != nil {
+		return true
+	}
+	return false
+}
+
+// IsValidIPV4Address check given ipv4 address is valid
+func IsValidIPV4Address(ip string) bool {
+	ipc := net.ParseIP(ip)
+	if ipc.To4() != nil {
+		return true
+	}
+	return false
+}
+
+// IsValidIPV6Address check given ipv6 address is valid
+func IsValidIPV6Address(ip string) bool {
+	ipc := net.ParseIP(ip)
+	if ipc.To16() != nil {
+		return true
+	}
+	return false
+}
