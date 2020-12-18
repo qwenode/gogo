@@ -39,7 +39,7 @@ func TestCommandFn(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := CommandFn(tt.args.name, tt.args.fn, tt.args.arg...); got != tt.want {
+			if got := CommandFn(tt.args.fn, tt.args.name, tt.args.arg...); got != tt.want {
 				t.Errorf("CommandFn() = %v, want %v", got, tt.want)
 			}
 		})
