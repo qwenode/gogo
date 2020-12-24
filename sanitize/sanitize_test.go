@@ -520,3 +520,30 @@ func TestRemoveAllSpace(t *testing.T) {
 		})
 	}
 }
+
+func TestMultipleBackslashToSingle(t *testing.T) {
+	type args struct {
+		str string
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			args: args{str: "\\\\\\\\\\\\\\\\\\\\\\"},
+			want: "\\",
+		},
+		{
+			args: args{str: "\\\\\\\\\\\\\\\\\\\\"},
+			want: "\\",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := MultipleBackslashToSingle(tt.args.str); got != tt.want {
+				t.Errorf("MultipleBackslashToSingle() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

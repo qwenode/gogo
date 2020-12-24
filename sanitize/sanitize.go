@@ -114,6 +114,13 @@ func MultipleSpaceToSingle(str string) string {
 	return strings.TrimSpace(r)
 }
 
+//MultipleBackslashToSingle \\ to \  \\\\ to \
+func MultipleBackslashToSingle(str string) string {
+	sanitize, _ := regexp.Compile("([\\\\]+)")
+	r := sanitize.ReplaceAllString(str, "\\")
+	return strings.TrimSpace(r)
+}
+
 // RemoveAllSpace replace aa, bb to aa,bb
 func RemoveAllSpace(str string) string {
 	sanitize, _ := regexp.Compile("\\s+")
