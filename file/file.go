@@ -54,6 +54,22 @@ func WriteFileAppend(filename string, content []byte) error {
 	return err
 }
 
+// WriteFileAppend Append content to the end of the file
+func WriteFileAppendString(filename string, content string) error {
+	f, err := os.OpenFile(filename, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
+	if err != nil {
+		return err
+	}
+	_, err = f.WriteString(content)
+	if err1 := f.Close(); err == nil {
+		err = err1
+	}
+
+	return err
+}
+
+
+
 // PutContents put content to the file,will clean old data
 func PutContents(filename string, content []byte) error {
 	f, err := os.OpenFile(filename, os.O_TRUNC|os.O_WRONLY|os.O_CREATE, 0644)
