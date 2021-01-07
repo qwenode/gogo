@@ -5,6 +5,7 @@ import (
 	"github.com/qwenode/gogo/sanitize"
 	"io/ioutil"
 	"os/exec"
+	"strings"
 )
 
 // commandFunc call by CommandFn
@@ -17,6 +18,16 @@ func CommandFn(fn commandFunc, name string, arg ...string) bool {
 		return fn(string(output), sanitize.Int(err.Error()))
 	}
 	return fn(string(output), 0)
+}
+
+// CommandFn run exec.command(name,arg...).CombinedOutput(), just one command
+func CommandLineFn(fn commandFunc, c string) bool {
+	if len(c) == 0 {
+		return false
+	}
+	split := strings.Split(c, " ")
+	args := split[1:]
+	return CommandFn(fn, split[0], args...)
 }
 
 // commandStdoutFunc call by CommandRealtimeStdout
@@ -48,6 +59,16 @@ func CommandRealtimeStdout(fn commandStdoutFunc, name string, arg ...string) boo
 		}
 	}
 	return r
+}
+
+// CommandRealtimeStdout run exec.command(name,arg...) and realtime output ,just one command
+func CommandLineRealtimeStdout(fn commandStdoutFunc, c string) bool {
+	if len(c) == 0 {
+		return false
+	}
+	split := strings.Split(c, " ")
+	args := split[1:]
+	return CommandRealtimeStdout(fn, split[0], args...)
 }
 
 //TODO add CommandRealtimeStdoutTimeout run with timeout
