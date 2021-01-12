@@ -138,13 +138,6 @@ func TestCommandLineFn(t *testing.T) {
 			}, c: "ping"},
 			want: true,
 		},
-		{
-			args: args{fn: func(output string, errCode int) bool {
-				log.Println(output, errCode)
-				return true
-			}, c: ""},
-			want: false,
-		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
