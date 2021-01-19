@@ -376,3 +376,36 @@ func TestIsDirectory(t *testing.T) {
 		})
 	}
 }
+
+func TestCopyFile(t *testing.T) {
+	type args struct {
+		src string
+		dst string
+	}
+	tests := []struct {
+		name    string
+		args    args
+		wantErr bool
+	}{
+		{
+			args:    args{src: "./file.go", dst: "./t_t_t.gg"},
+			wantErr: false,
+		},
+		{
+			args:    args{src: "./file.gog", dst: "./t_t_t.gg"},
+			wantErr: true,
+		},
+		{
+			args:    args{src: "./file.go", dst: "./."},
+			wantErr: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if err := CopyFile(tt.args.src, tt.args.dst); (err != nil) != tt.wantErr {
+				t.Errorf("CopyFile() error = %v, wantErr %v", err, tt.wantErr)
+			}
+		})
+	}
+	os.Remove("./t_t_t.gg")
+}
