@@ -74,7 +74,7 @@ func TestGetHeaderSize(t *testing.T) {
 		want int64
 	}{
 		{
-			args: args{url: "http://myip.ipip.net/"},
+			args: args{url: "https://ifconfig.io/"},
 			want: 10,
 		},
 		{
