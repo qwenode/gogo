@@ -1,10 +1,9 @@
-package structs
+package sstruct
 
 import (
 	"reflect"
 )
 
-// Deprecated: please using sstruct.ToFieldValueMap
 // ToFieldValueMap struct to map
 func ToFieldValueMap(i interface{}) map[string]interface{} {
 	v := reflect.ValueOf(i)
