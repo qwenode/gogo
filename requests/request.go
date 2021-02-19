@@ -66,6 +66,7 @@ func DownloadFn(fn downloadFunc, url string, toFile string) (int64, error) {
 	defer get.Body.Close()
 	buf := make([]byte, 32*1024)
 	written := int64(0)
+	var err2 error
 	for {
 		nr, er := get.Body.Read(buf)
 		if nr > 0 {
@@ -75,22 +76,22 @@ func DownloadFn(fn downloadFunc, url string, toFile string) (int64, error) {
 				fn(written)
 			}
 			if ew != nil {
-				err = ew
+				err2 = ew
 				break
 			}
 			if nr != nw {
-				err = io.ErrShortWrite
+				err2 = io.ErrShortWrite
 				break
 			}
 		}
 		if er != nil {
 			if er != io.EOF {
-				err = er
+				err2 = er
 			}
 			break
 		}
 	}
 	//written, _ := io.Copy(create, get.Body)
 	//get.Body.Read()
-	return written, nil
+	return written, err2
 }
