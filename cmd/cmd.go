@@ -19,7 +19,7 @@ func CommandFn(fn commandFunc, name string, arg ...string) bool {
 	return fn(string(output), 0)
 }
 
-// CommandFn run exec.command(name,arg...).CombinedOutput(), just one command,actually exec /bin/bash -c "your command"
+// CommandLineFn run exec.command(name,arg...).CombinedOutput(), just one command,actually exec /bin/bash -c "your command"
 func CommandLineFn(fn commandFunc, c string) bool {
 	return CommandFn(fn, "/bin/bash", "-c", c)
 }
