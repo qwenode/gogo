@@ -55,7 +55,7 @@ func CommandRealtimeStdout(fn commandStdoutFunc, name string, arg ...string) boo
 	return r
 }
 
-// CommandRealtimeStdout run exec.command(name,arg...) and realtime output ,just one command,actually exec /bin/bash -c "your command"
+// CommandLineRealtimeStdout run exec.command(name,arg...) and realtime output ,just one command,actually exec /bin/bash -c "your command"
 func CommandLineRealtimeStdout(fn commandStdoutFunc, c string) bool {
 	return CommandRealtimeStdout(fn, "/bin/bash", "-c", c)
 }

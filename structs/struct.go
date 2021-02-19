@@ -4,8 +4,8 @@ import (
 	"reflect"
 )
 
-// Deprecated: please using sstruct.ToFieldValueMap
 // ToFieldValueMap struct to map
+// Deprecated: please using sstruct.ToFieldValueMap
 func ToFieldValueMap(i interface{}) map[string]interface{} {
 	v := reflect.ValueOf(i)
 	typeV := v.Type()
