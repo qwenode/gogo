@@ -1,6 +1,8 @@
 package file
 
 import (
+	"bufio"
+	"bytes"
 	"crypto/md5"
 	"crypto/sha1"
 	"crypto/sha256"
@@ -18,6 +20,23 @@ func GetContents(filename string) string {
 		return ""
 	}
 	return string(file)
+}
+
+// GetLines get every line string of file
+func GetLines(filename string) (lines []string, err error) {
+	contents, err := ioutil.ReadFile(filename)
+	if err != nil {
+		return nil, err
+	}
+	r := bytes.NewReader(contents)
+	scanner := bufio.NewScanner(r)
+	for scanner.Scan() {
+		lines = append(lines, scanner.Text())
+	}
+	if err = scanner.Err(); err != nil {
+		return nil, err
+	}
+	return lines, nil
 }
 
 // Exist check file or dir if exists

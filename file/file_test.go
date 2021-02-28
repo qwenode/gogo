@@ -2,6 +2,7 @@ package file
 
 import (
 	"os"
+	"reflect"
 	"testing"
 )
 
@@ -408,4 +409,34 @@ func TestCopyFile(t *testing.T) {
 		})
 	}
 	os.Remove("./t_t_t.gg")
+}
+
+func TestGetLines(t *testing.T) {
+	type args struct {
+		filename string
+	}
+	tests := []struct {
+		name      string
+		args      args
+		wantLines []string
+		wantErr   bool
+	}{
+		{
+			args:      args{"./testdata/test.txt"},
+			wantLines: []string{"a", "b", "c"},
+			wantErr:   false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			gotLines, err := GetLines(tt.args.filename)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("GetLines() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if !reflect.DeepEqual(gotLines, tt.wantLines) {
+				t.Errorf("GetLines() gotLines = %v, want %v", gotLines, tt.wantLines)
+			}
+		})
+	}
 }
