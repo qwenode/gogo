@@ -9,6 +9,7 @@ import (
 	"io"
 	"io/ioutil"
 	"os"
+	"strings"
 )
 
 // GetContents get file content
@@ -18,6 +19,11 @@ func GetContents(filename string) string {
 		return ""
 	}
 	return string(file)
+}
+
+// GetLines get every line of file
+func GetLines(filename string) (lines []string) {
+	return strings.Split(GetContents(filename), "\n")
 }
 
 // Exist check file or dir if exists
