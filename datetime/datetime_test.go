@@ -1,6 +1,9 @@
 package datetime
 
-import "testing"
+import (
+	"testing"
+	"time"
+)
 
 func TestGetUnixTime(t *testing.T) {
 	tests := []struct {
@@ -153,6 +156,78 @@ func TestGetEndOfTheDayByInt(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := GetEndOfTheDayByInt(tt.args.unix); got != tt.want {
 				t.Errorf("GetEndOfTheDayByInt() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestDatetimeFormat(t *testing.T) {
+	type args struct {
+		time2 time.Time
+	}
+	parse, _ := time.Parse("2006-01-02 15:04:05", "2021-05-05 20:01:50")
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			args: args{parse},
+			want: "2021-05-05 20:01:50",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := FormatAsDatetime(tt.args.time2); got != tt.want {
+				t.Errorf("FormatAsDatetime() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestFormatAsDate(t *testing.T) {
+	type args struct {
+		time2 time.Time
+	}
+	parse, _ := time.Parse("2006-01-02 15:04:05", "2021-05-05 20:01:50")
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			args: args{parse},
+			want: "2021-05-05",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := FormatAsDate(tt.args.time2); got != tt.want {
+				t.Errorf("FormatAsDate() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestFormatAsTime(t *testing.T) {
+	type args struct {
+		time2 time.Time
+	}
+	parse, _ := time.Parse("2006-01-02 15:04:05", "2021-05-05 20:01:50")
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			args: args{parse},
+			want: "20:01:50",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := FormatAsTime(tt.args.time2); got != tt.want {
+				t.Errorf("FormatAsTime() = %v, want %v", got, tt.want)
 			}
 		})
 	}

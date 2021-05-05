@@ -39,3 +39,18 @@ func GetEndOfTheDayByInt64(unix int64) int64 {
 func GetEndOfTheDayByInt(unix int) int {
 	return int(GetEndOfTheDayByInt64(int64(unix)))
 }
+
+// FormatAsDatetime format 2006-01-02 15:04:05
+func FormatAsDatetime(time2 time.Time) string {
+	return time2.Format("2006-01-02 15:04:05")
+}
+
+// FormatAsDate format 2006-01-02
+func FormatAsDate(time2 time.Time) string {
+	return time2.Format("2006-01-02")
+}
+
+// FormatAsTime format 15:04:05
+func FormatAsTime(time2 time.Time) string {
+	return time2.Format("15:04:05")
+}
