@@ -28,6 +28,14 @@ func TestToInt(t *testing.T) {
 			want: 1,
 		},
 		{
+			args: args{str: int32(22)},
+			want: 22,
+		},
+		{
+			args: args{str: uint32(22)},
+			want: 22,
+		},
+		{
 			args: args{str: int64(1)},
 			want: 1,
 		},
@@ -123,6 +131,14 @@ func TestToInt64(t *testing.T) {
 			want: 1,
 		},
 		{
+			args: args{str: int32(22)},
+			want: 22,
+		},
+		{
+			args: args{str: uint32(22)},
+			want: 22,
+		},
+		{
 			args: args{str: uint64(1)},
 			want: 1,
 		},
@@ -183,6 +199,14 @@ func TestToUInt(t *testing.T) {
 		},
 		{
 			args: args{str: int64(22)},
+			want: 22,
+		},
+		{
+			args: args{str: int32(22)},
+			want: 22,
+		},
+		{
+			args: args{str: uint32(22)},
 			want: 22,
 		},
 		{
@@ -253,6 +277,14 @@ func TestToUInt64(t *testing.T) {
 			want: 22,
 		},
 		{
+			args: args{str: int32(22)},
+			want: 22,
+		},
+		{
+			args: args{str: uint32(22)},
+			want: 22,
+		},
+		{
 			args: args{str: float32(22.2)},
 			want: 22,
 		},
@@ -317,6 +349,14 @@ func TestToFloat64(t *testing.T) {
 		},
 		{
 			args: args{str: int64(22)},
+			want: 22,
+		},
+		{
+			args: args{str: int32(22)},
+			want: 22,
+		},
+		{
+			args: args{str: uint32(22)},
 			want: 22,
 		},
 		{
