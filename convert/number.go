@@ -13,6 +13,10 @@ func ToInt(str interface{}) int {
 		return str.(int)
 	case int64:
 		return int(str.(int64))
+	case int32:
+		return int(str.(int32))
+	case uint32:
+		return int(str.(uint32))
 	case string:
 		atoi, _ := strconv.Atoi(str.(string))
 		return atoi
@@ -41,6 +45,10 @@ func ToUInt(str interface{}) uint {
 		return uint(str.(int))
 	case int64:
 		return uint(str.(int64))
+	case int32:
+		return uint(str.(int32))
+	case uint32:
+		return uint(str.(uint32))
 	case string:
 		atoi, _ := strconv.Atoi(str.(string))
 		return uint(atoi)
@@ -64,6 +72,10 @@ func ToUInt64(str interface{}) uint64 {
 		return uint64(str.(int))
 	case int64:
 		return uint64(str.(int64))
+	case int32:
+		return uint64(str.(int32))
+	case uint32:
+		return uint64(str.(uint32))
 	case string:
 		atoi, _ := strconv.Atoi(str.(string))
 		return uint64(atoi)
@@ -85,6 +97,10 @@ func ToInt64(str interface{}) int64 {
 		return int64(str.(uint))
 	case int:
 		return int64(str.(int))
+	case int32:
+		return int64(str.(int32))
+	case uint32:
+		return int64(str.(uint32))
 	case int64:
 		return str.(int64)
 	case string:
@@ -108,6 +124,10 @@ func ToFloat64(str interface{}) float64 {
 		return float64(str.(uint))
 	case int:
 		return float64(str.(int))
+	case int32:
+		return float64(str.(int32))
+	case uint32:
+		return float64(str.(uint32))
 	case int64:
 		return float64(str.(int64))
 	case string:
