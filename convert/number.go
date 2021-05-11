@@ -115,6 +115,38 @@ func ToInt64(str interface{}) int64 {
 	}
 }
 
+// ToInt32 convert to int32
+func ToInt32(str interface{}) int32 {
+	switch str.(type) {
+	case uint64:
+		return int32(str.(uint64))
+	case uint:
+		return int32(str.(uint))
+	case int:
+		return int32(str.(int))
+	case int32:
+		return str.(int32)
+	case uint32:
+		return int32(str.(uint32))
+	case int64:
+		return int32(str.(int64))
+	case string:
+		atoi, _ := strconv.Atoi(str.(string))
+		return int32(atoi)
+	case float64:
+		return int32(str.(float64))
+	case float32:
+		return int32(str.(float32))
+	case bool:
+		if str.(bool) == true {
+			return 1
+		}
+		return 0
+	default:
+		return 0
+	}
+}
+
 // ToFloat64 convert to float64
 func ToFloat64(str interface{}) float64 {
 	switch str.(type) {

@@ -89,6 +89,93 @@ func TestToInt(t *testing.T) {
 	}
 }
 
+func TestToInt32(t *testing.T) {
+	type args struct {
+		str interface{}
+	}
+	tests := []struct {
+		name string
+		args args
+		want int32
+	}{
+		{
+			args: args{str: "111"},
+			want: 111,
+		},
+		{
+			args: args{str: "x111"},
+			want: 0,
+		},
+		{
+			args: args{str: uint(1)},
+			want: 1,
+		},
+		{
+			args: args{str: int(1)},
+			want: 1,
+		},
+		{
+			args: args{str: int32(22)},
+			want: 22,
+		},
+		{
+			args: args{str: uint32(22)},
+			want: 22,
+		},
+		{
+			args: args{str: int64(1)},
+			want: 1,
+		},
+		{
+			args: args{str: uint64(1)},
+			want: 1,
+		},
+		{
+			args: args{str: 0.33},
+			want: 0,
+		},
+		{
+			args: args{str: 1.33},
+			want: 1,
+		},
+		{
+			args: args{str: 1.55},
+			want: 1,
+		},
+		{
+			args: args{str: int64(22)},
+			want: 22,
+		},
+		{
+			args: args{str: float32(22.2)},
+			want: 22,
+		},
+		{
+			args: args{str: 1},
+			want: 1,
+		},
+		{
+			args: args{str: args{str: "x"}},
+			want: 0,
+		},
+		{
+			args: args{str: true},
+			want: 1,
+		},
+		{
+			args: args{str: false},
+			want: 0,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := ToInt32(tt.args.str); got != tt.want {
+				t.Errorf("ToInt() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
 func TestToInt64(t *testing.T) {
 	type args struct {
 		str interface{}
