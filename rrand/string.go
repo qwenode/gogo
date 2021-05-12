@@ -11,9 +11,7 @@ import (
 // GetRandString get rrand string use crypto/rand
 func GetRandString(n int) string {
 	b := make([]byte, n)
-	if _, err := crypto_rand.Read(b); err != nil {
-		return GetRandStringNormal(n)
-	}
+	_, _ = crypto_rand.Read(b)
 	return fmt.Sprintf("%x", b)[:n]
 }
 
