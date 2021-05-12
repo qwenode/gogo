@@ -4,6 +4,7 @@ import (
 	"crypto/rand"
 	"fmt"
 	rand2 "math/rand"
+	"time"
 )
 
 // GetRandString get random string use crypto/rand
@@ -23,4 +24,8 @@ func GetRandStringNormal(n int) string {
 		b[i] = runes[rand2.Intn(len(runes))]
 	}
 	return fmt.Sprintf("%x", b)[:n]
+}
+
+func init() {
+	rand2.Seed(time.Now().UnixNano())
 }
