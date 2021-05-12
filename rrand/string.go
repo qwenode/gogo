@@ -1,16 +1,17 @@
 package rrand
 
 import (
-	"crypto/rand"
+	crypto_rand "crypto/rand"
+	"encoding/binary"
 	"fmt"
-	rand2 "math/rand"
+	math_rand "math/rand"
 	"time"
 )
 
 // GetRandString get rrand string use crypto/rand
 func GetRandString(n int) string {
 	b := make([]byte, n)
-	if _, err := rand.Read(b); err != nil {
+	if _, err := crypto_rand.Read(b); err != nil {
 		return GetRandStringNormal(n)
 	}
 	return fmt.Sprintf("%x", b)[:n]
@@ -21,11 +22,17 @@ func GetRandStringNormal(n int) string {
 	b := make([]byte, n)
 	var runes = []byte("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
 	for i := range b {
-		b[i] = runes[rand2.Intn(len(runes))]
+		b[i] = runes[math_rand.Intn(len(runes))]
 	}
 	return fmt.Sprintf("%x", b)[:n]
 }
 
 func init() {
-	rand2.Seed(time.Now().UnixNano())
+	var rb [4]byte
+	_, err := crypto_rand.Read(rb[:])
+	seed := time.Now().UnixNano()
+	if err == nil {
+		seed += int64(binary.LittleEndian.Uint32(rb[:]))
+	}
+	math_rand.Seed(seed)
 }
