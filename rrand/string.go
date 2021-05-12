@@ -1,4 +1,4 @@
-package random
+package rrand
 
 import (
 	"crypto/rand"
@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-// GetRandString get random string use crypto/rand
+// GetRandString get rrand string use crypto/rand
 func GetRandString(n int) string {
 	b := make([]byte, n)
 	if _, err := rand.Read(b); err != nil {
@@ -16,7 +16,7 @@ func GetRandString(n int) string {
 	return fmt.Sprintf("%x", b)[:n]
 }
 
-// GetRandStringNormal get random string use own seeds
+// GetRandStringNormal get rrand string use own seeds
 func GetRandStringNormal(n int) string {
 	b := make([]byte, n)
 	var runes = []byte("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
