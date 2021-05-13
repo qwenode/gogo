@@ -1,6 +1,7 @@
 package sanitize
 
 import (
+	"github.com/qwenode/gogo/convert"
 	"net/url"
 	"regexp"
 	"strconv"
@@ -16,6 +17,11 @@ func Int(str string) int {
 		i *= -1
 	}
 	return i
+}
+
+// Int32 sanitize string to int32 ,exp: 1s2d3 out:123
+func Int32(str string) int32 {
+	return convert.ToInt32(Int(str))
 }
 
 // UInt sanitize string to UInt ,exp: 1s2d3 out:123

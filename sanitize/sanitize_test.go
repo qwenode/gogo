@@ -547,3 +547,48 @@ func TestMultipleBackslashToSingle(t *testing.T) {
 		})
 	}
 }
+
+func TestInt32(t *testing.T) {
+	type args struct {
+		str string
+	}
+	tests := []struct {
+		name string
+		args args
+		want int32
+	}{
+		{
+			args: args{
+				str: "wfew123",
+			},
+			want: 123,
+		},
+		{
+			args: args{
+				str: "wfew1eee",
+			},
+			want: 1,
+		},
+		{
+			args: args{
+				str: "wf32w23gf",
+			},
+			want: 3223,
+		},
+		{
+			args: args{str: "-fe1"},
+			want: -1,
+		},
+		{
+			args: args{str: "-fe0"},
+			want: 0,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := Int32(tt.args.str); got != tt.want {
+				t.Errorf("Int32() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
