@@ -430,3 +430,33 @@ func TestGetLines(t *testing.T) {
 		})
 	}
 }
+
+func TestMoveFile(t *testing.T) {
+	type args struct {
+		src string
+		dst string
+	}
+	PutContents("./t_t_tsrc.jpg", []byte("1112222333"))
+	tests := []struct {
+		name    string
+		args    args
+		wantErr bool
+	}{
+		{
+			args:    args{src: "./t_t_tsrc.jpg", dst: "./t_t_t.gg"},
+			wantErr: false,
+		},
+		{
+			args:    args{src: "./t_t_tsrc.jpg", dst: "./."},
+			wantErr: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if err := MoveFile(tt.args.src, tt.args.dst); (err != nil) != tt.wantErr {
+				t.Errorf("MoveFile() error = %v, wantErr %v", err, tt.wantErr)
+			}
+		})
+	}
+	os.Remove("./t_t_t.gg")
+}

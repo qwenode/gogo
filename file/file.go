@@ -167,3 +167,12 @@ func CopyFile(src, dst string) error {
 	}
 	return nil
 }
+
+// MoveFile move file
+func MoveFile(src, dst string) error {
+	err := CopyFile(src, dst)
+	if err != nil {
+		return err
+	}
+	return os.Remove(src)
+}
