@@ -8,7 +8,7 @@ import (
 )
 
 //Request UAC elevation in Go,要求以管理员身份运行程序
-func RequireUAC() error {
+func RequireUAC() bool {
 	_, err := os.Open("\\\\.\\PHYSICALDRIVE0")
 	if err != nil {
 		verb := "runas"
@@ -24,7 +24,10 @@ func RequireUAC() error {
 		var showCmd int32 = 1 //SW_NORMAL
 
 		err := windows.ShellExecute(0, verbPtr, exePtr, argPtr, cwdPtr, showCmd)
-		return err
+		if err != nil {
+			return false
+		}
+		return true
 	}
-	return nil
+	return true
 }
