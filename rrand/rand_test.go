@@ -3,6 +3,7 @@ package rrand
 import (
 	"fmt"
 	"log"
+	"math"
 	"strings"
 	"testing"
 )
@@ -233,7 +234,7 @@ func TestNormFloat64(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := NormFloat64(); got < 0 {
+			if got := NormFloat64(); got < -math.MaxFloat64 {
 				t.Errorf("NormFloat64() = %v, want %v", got, tt.want)
 			}
 		})
