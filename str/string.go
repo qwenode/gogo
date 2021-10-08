@@ -55,3 +55,12 @@ func GetFirstElemBySep(str, sep string) string {
 	}
 	return strings.TrimSpace(split[0])
 }
+
+// GetSecondElemBySep input str: "ab,bc,cc", sep:"," return :"bc"
+func GetSecondElemBySep(str, sep string) string {
+	split := strings.Split(str, sep)
+	if len(split) < 2 {
+		return str
+	}
+	return strings.TrimSpace(split[1])
+}
