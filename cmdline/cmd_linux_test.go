@@ -1,6 +1,10 @@
 package cmdline
 
-import "testing"
+import (
+	"log"
+	"strings"
+	"testing"
+)
 
 func TestCommandLineFn(t *testing.T) {
 	type args struct {

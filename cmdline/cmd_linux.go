@@ -1,5 +1,12 @@
 package cmdline
 
+import (
+	"bufio"
+	"github.com/qwenode/gogo/sanitize"
+	"io/ioutil"
+	"os/exec"
+)
+
 // commandFunc call by CommandFn
 type commandFunc func(output string, errCode int) bool
 
