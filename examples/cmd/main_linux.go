@@ -1,12 +1,12 @@
 package main
 
 import (
-	"github.com/qwenode/gogo/cmd"
+	"github.com/qwenode/gogo/cmdline"
 	"log"
 )
 
 func main() {
-	stdout := cmd.CommandRealtimeStdout(func(output string, errCode int, done bool) bool {
+	stdout := cmdline.CommandRealtimeStdout(func(output string, errCode int, done bool) bool {
 		if done {
 			log.Println(output, errCode, done)
 			return true
@@ -15,7 +15,7 @@ func main() {
 		return true
 	}, "ping", "127.0.0.1", "-c", "10")
 	log.Println(stdout)
-	realtimeStdout := cmd.CommandRealtimeStdout(func(output string, errCode int, done bool) bool {
+	realtimeStdout := cmdline.CommandRealtimeStdout(func(output string, errCode int, done bool) bool {
 		if done {
 			log.Println(output, errCode, done)
 			return true

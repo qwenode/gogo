@@ -1,11 +1,4 @@
-package cmd
-
-import (
-	"bufio"
-	"github.com/qwenode/gogo/sanitize"
-	"io/ioutil"
-	"os/exec"
-)
+package cmdline
 
 // commandFunc call by CommandFn
 type commandFunc func(output string, errCode int) bool
@@ -17,11 +10,6 @@ func CommandFn(fn commandFunc, name string, arg ...string) bool {
 		return fn(string(output), sanitize.Int(err.Error()))
 	}
 	return fn(string(output), 0)
-}
-
-// CommandLineFn run exec.command(name,arg...).CombinedOutput(), just one command,actually exec /bin/bash -c "your command"
-func CommandLineFn(fn commandFunc, c string) bool {
-	return CommandFn(fn, "/bin/bash", "-c", c)
 }
 
 // commandStdoutFunc call by CommandRealtimeStdout
@@ -60,7 +48,7 @@ func CommandLineRealtimeStdout(fn commandStdoutFunc, c string) bool {
 	return CommandRealtimeStdout(fn, "/bin/bash", "-c", c)
 }
 
-//windows command: cmd.exe /c "command"
-//linux command: /bin/bash -c "command"
-//TODO add CommandRealtimeStdoutTimeout run with timeout
-//TODO add CommandFnTimeout run with timeout
+// CommandLineFn run exec.command(name,arg...).CombinedOutput(), just one command,actually exec /bin/bash -c "your command"
+func CommandLineFn(fn commandFunc, c string) bool {
+	return CommandFn(fn, "/bin/bash", "-c", c)
+}
