@@ -7,18 +7,6 @@ import (
 	"os/exec"
 )
 
-// commandFunc call by CommandFn
-type commandFunc func(output string, errCode int) bool
-
-// CommandFn run exec.command(name,arg...).CombinedOutput()
-func CommandFn(fn commandFunc, name string, arg ...string) bool {
-	output, err := exec.Command(name, arg...).CombinedOutput()
-	if err != nil {
-		return fn(string(output), sanitize.Int(err.Error()))
-	}
-	return fn(string(output), 0)
-}
-
 // commandStdoutFunc call by CommandRealtimeStdout
 type commandStdoutFunc func(output string, errCode int, done bool) bool
 
