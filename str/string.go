@@ -64,3 +64,19 @@ func GetSecondElemBySep(str, sep string) string {
 	}
 	return strings.TrimSpace(split[1])
 }
+
+//JoinWithSep merge string with separator
+func JoinWithSep(sep string, elem ...string) string {
+	if len(elem) == 0 {
+		return ""
+	}
+	return strings.Trim(strings.Join(elem, sep), sep)
+}
+
+//Join merge string
+func Join(elem ...string) string {
+	if len(elem) == 0 {
+		return ""
+	}
+	return strings.Join(elem, "")
+}
