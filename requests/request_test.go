@@ -4,7 +4,6 @@ import (
 	"testing"
 )
 
-
 func TestGetHeaderSize(t *testing.T) {
 	type args struct {
 		url string
