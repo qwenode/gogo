@@ -176,3 +176,33 @@ func MoveFile(src, dst string) error {
 	}
 	return os.Remove(src)
 }
+
+// ReplacePathInvalidCharacterToUnderline replace path invalid char to underline
+func ReplacePathInvalidCharacterToUnderline(s string) string {
+	character := ReplacePathInvalidCharacter(s, "_")
+	for {
+		if !strings.Contains(character, "__") {
+			break
+		}
+		character = strings.ReplaceAll(character, "__", "_")
+	}
+	return character
+}
+
+// RemovePathInvalidCharacter remove path invalid character
+func RemovePathInvalidCharacter(s string) string {
+	return ReplacePathInvalidCharacter(s, "")
+}
+
+// ReplacePathInvalidCharacter replace path invalid char
+func ReplacePathInvalidCharacter(s string, replaceChar string) string {
+	s = strings.ReplaceAll(s, `:`, replaceChar)
+	s = strings.ReplaceAll(s, `*`, replaceChar)
+	s = strings.ReplaceAll(s, `?`, replaceChar)
+	s = strings.ReplaceAll(s, `<`, replaceChar)
+	s = strings.ReplaceAll(s, `>`, replaceChar)
+	s = strings.ReplaceAll(s, `"`, replaceChar)
+	s = strings.ReplaceAll(s, `'`, replaceChar)
+	s = strings.ReplaceAll(s, `|`, replaceChar)
+	return s
+}

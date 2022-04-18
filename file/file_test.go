@@ -460,3 +460,73 @@ func TestMoveFile(t *testing.T) {
 	}
 	os.Remove("./t_t_t.gg")
 }
+
+func TestReplacePathInvalidCharacter(t *testing.T) {
+	type args struct {
+		s           string
+		replaceChar string
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			args: args{s: "/test/<23>?g3i3o93/"},
+			want: "/test/23g3i3o93/",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := ReplacePathInvalidCharacter(tt.args.s, tt.args.replaceChar); got != tt.want {
+				t.Errorf("ReplacePathInvalidCharacter() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestRemovePathInvalidCharacter(t *testing.T) {
+	type args struct {
+		s string
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			args: args{s: "/test/<23>?g3i3o93/"},
+			want: "/test/23g3i3o93/",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := RemovePathInvalidCharacter(tt.args.s); got != tt.want {
+				t.Errorf("RemovePathInvalidCharacter() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestReplacePathInvalidCharacterToUnderline(t *testing.T) {
+	type args struct {
+		s string
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			args: args{s: "/test/<23>?g3i3o93/"},
+			want: "/test/_23_g3i3o93/",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := ReplacePathInvalidCharacterToUnderline(tt.args.s); got != tt.want {
+				t.Errorf("ReplacePathInvalidCharacterToUnderline() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
