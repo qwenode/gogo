@@ -1,6 +1,9 @@
 package str
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 func TestSubstr(t *testing.T) {
 	type args struct {
@@ -255,6 +258,37 @@ func TestGetSecondElemBySep(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := GetSecondElemBySep(tt.args.str, tt.args.sep); got != tt.want {
 				t.Errorf("GetSecondElemBySep() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestExtractUrls(t *testing.T) {
+	type args struct {
+		str string
+	}
+	tests := []struct {
+		name string
+		args args
+		want []string
+	}{
+		{
+			args: args{str: "【淘宝】https://m.tb.cn/h.U5y5PTs?tk=C7lddYenQ5T CZ0001 「lulu短裙女运动裙裤跑步健身网球裙高腰速干羽毛球裙休闲高尔夫裙」\n点击链接直接打开 或者 淘宝搜索直接打开"},
+			want: []string{"https://m.tb.cn/h.U5y5PTs?tk=C7lddYenQ5T"},
+		},
+		{
+			args: args{str: ""},
+			want: []string{},
+		},
+		{
+			args: args{str: "【淘宝】https://m.tb.cn/h.U5y5PTs?tk=C7lddYenQ5T CZ0001 「lulu短裙女运动裙裤跑步健身网球裙高腰 https://m.tb.cn/h.U5y5PTs?tk=C7lddYenQ5T 速干羽毛球裙休闲高尔夫裙」\n点击链接直接打开 或者 淘宝搜索直接打开"},
+			want: []string{"https://m.tb.cn/h.U5y5PTs?tk=C7lddYenQ5T", "https://m.tb.cn/h.U5y5PTs?tk=C7lddYenQ5T"},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := ExtractUrls(tt.args.str); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("ExtractUrls() = %v, want %v", got, tt.want)
 			}
 		})
 	}

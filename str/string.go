@@ -1,6 +1,18 @@
 package str
 
-import "strings"
+import (
+	"regexp"
+	"strings"
+)
+
+func ExtractUrls(str string) []string {
+	if len(str) <= 0 {
+		return []string{}
+	}
+	compile, _ := regexp.Compile(`\bhttps?://[^,\s()<>]+(?:\([\w\d]+\)|([^,[:punct:]\s]|/))`)
+	submatch := compile.FindAllString(str, -1)
+	return submatch
+}
 
 // Substr substr with length
 func Substr(str string, start, length int) string {
@@ -65,7 +77,7 @@ func GetSecondElemBySep(str, sep string) string {
 	return strings.TrimSpace(split[1])
 }
 
-//JoinWithSep merge string with separator
+// JoinWithSep merge string with separator
 func JoinWithSep(sep string, elem ...string) string {
 	if len(elem) == 0 {
 		return ""
@@ -73,7 +85,7 @@ func JoinWithSep(sep string, elem ...string) string {
 	return strings.Trim(strings.Join(elem, sep), sep)
 }
 
-//Join merge string
+// Join merge string
 func Join(elem ...string) string {
 	if len(elem) == 0 {
 		return ""
