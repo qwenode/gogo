@@ -5,6 +5,7 @@ import (
 	"strings"
 )
 
+// Deprecated
 func ExtractUrls(str string) []string {
 	if len(str) <= 0 {
 		return []string{}
@@ -14,7 +15,7 @@ func ExtractUrls(str string) []string {
 	return submatch
 }
 
-// Substr substr with length
+// Deprecated with length
 func Substr(str string, start, length int) string {
 	if length < 0 {
 		length = 0
@@ -28,7 +29,7 @@ func Substr(str string, start, length int) string {
 	if begin < 0 {
 		begin = 0
 	}
-
+	
 	end := begin + length
 	if end > sLen {
 		end = sLen
@@ -41,6 +42,7 @@ func Substr(str string, start, length int) string {
 
 // CutByEndString input str:"Pure organic linen fabrics, clothes and roses that last by LinenRoses" endStr:"by"
 // return: "Pure organic linen fabrics, clothes and roses that last"
+// Deprecated
 func CutByEndString(str, endStr string) string {
 	split := strings.Split(str, endStr)
 	end := len(split) - 1
@@ -51,6 +53,7 @@ func CutByEndString(str, endStr string) string {
 }
 
 // GetLastElemBySep input str: "ab,bc,cc", sep:"," return :"cc"
+//Deprecated
 func GetLastElemBySep(str, sep string) string {
 	split := strings.Split(str, sep)
 	if len(split) <= 1 {
@@ -60,6 +63,7 @@ func GetLastElemBySep(str, sep string) string {
 }
 
 // GetFirstElemBySep input str: "ab,bc,cc", sep:"," return :"ab"
+//Deprecated
 func GetFirstElemBySep(str, sep string) string {
 	split := strings.Split(str, sep)
 	if len(split) == 1 {
@@ -69,6 +73,7 @@ func GetFirstElemBySep(str, sep string) string {
 }
 
 // GetSecondElemBySep input str: "ab,bc,cc", sep:"," return :"bc"
+//Deprecated
 func GetSecondElemBySep(str, sep string) string {
 	split := strings.Split(str, sep)
 	if len(split) < 2 {
@@ -78,6 +83,7 @@ func GetSecondElemBySep(str, sep string) string {
 }
 
 // JoinWithSep merge string with separator
+//Deprecated
 func JoinWithSep(sep string, elem ...string) string {
 	if len(elem) == 0 {
 		return ""
@@ -86,6 +92,7 @@ func JoinWithSep(sep string, elem ...string) string {
 }
 
 // Join merge string
+//Deprecated
 func Join(elem ...string) string {
 	if len(elem) == 0 {
 		return ""
