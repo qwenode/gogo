@@ -23,6 +23,11 @@ func GetFileNameWithoutExtension(filePath string) string {
 	return str.GetFirstElemBySep(base, ".")
 }
 
+// GetExtension get extension name with no check mime type
+func GetExtension(filePath string) string {
+	return str.GetLastElemBySep(filePath, ".")
+}
+
 // GetContents get file content
 func GetContents(filename string) string {
 	file, err := os.ReadFile(filename)
@@ -67,7 +72,7 @@ func WriteFileAppend(filename string, content []byte) error {
 	if err1 := f.Close(); err1 == nil {
 		err = err1
 	}
-	
+
 	return err
 }
 
@@ -81,7 +86,7 @@ func PutContents(filename string, content []byte) error {
 	if err1 := f.Close(); err1 == nil {
 		err = err1
 	}
-	
+
 	return err
 }
 
