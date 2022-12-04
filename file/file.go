@@ -5,16 +5,27 @@ import (
 	"crypto/sha1"
 	"crypto/sha256"
 	"fmt"
+	"github.com/qwenode/gogo/str"
 	"hash/crc32"
 	"io"
-	"io/ioutil"
 	"os"
+	"path/filepath"
 	"strings"
 )
 
+// GetFileNameWithoutExtension get file name without extension exp: xxx/aa.go returns: aa
+func GetFileNameWithoutExtension(filePath string) string {
+	filePath = strings.TrimSpace(filePath)
+	if len(filePath) == 0 {
+		return filePath
+	}
+	base := filepath.Base(filePath)
+	return str.GetFirstElemBySep(base, ".")
+}
+
 // GetContents get file content
 func GetContents(filename string) string {
-	file, err := ioutil.ReadFile(filename)
+	file, err := os.ReadFile(filename)
 	if err != nil {
 		return ""
 	}
@@ -56,7 +67,7 @@ func WriteFileAppend(filename string, content []byte) error {
 	if err1 := f.Close(); err1 == nil {
 		err = err1
 	}
-
+	
 	return err
 }
 
@@ -70,7 +81,7 @@ func PutContents(filename string, content []byte) error {
 	if err1 := f.Close(); err1 == nil {
 		err = err1
 	}
-
+	
 	return err
 }
 
@@ -131,7 +142,7 @@ func Crc32(filename string) (string, error) {
 	return fmt.Sprintf("%x", hash32.Sum(nil)), nil
 }
 
-//GetSize get file size
+// GetSize get file size
 func GetSize(fileName string) int64 {
 	stat, err := os.Stat(fileName)
 	if err != nil {
