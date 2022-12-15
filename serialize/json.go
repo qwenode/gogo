@@ -4,9 +4,11 @@ import "encoding/json"
 
 // JsonEncode json encode
 func JsonEncode(v interface{}) string {
-	d, err := json.Marshal(v)
-	if err != nil {
-		return ""
-	}
-	return string(d)
+	return string(JsonEncodeByte(v))
+}
+
+// JsonEncodeByte json encode returns byte
+func JsonEncodeByte(v interface{}) []byte {
+	d, _ := json.Marshal(v)
+	return d
 }
