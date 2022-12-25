@@ -542,7 +542,7 @@ func TestGetFileName(t *testing.T) {
 	}{
 		{
 			args: args{"fwef/grerg.go"},
-			want: "grerg.go",
+			want: "grerg",
 		},
 	}
 	for _, tt := range tests {

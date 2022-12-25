@@ -32,7 +32,7 @@ func TestCommandLineFn(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := CommandLineFn(tt.args.fn, tt.args.c); got != tt.want {
+			if got := CommandFn(tt.args.fn, tt.args.c); got != tt.want {
 				t.Errorf("CommandLineFn() = %v, want %v", got, tt.want)
 			}
 		})

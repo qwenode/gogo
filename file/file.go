@@ -5,6 +5,7 @@ import (
 	"crypto/sha1"
 	"crypto/sha256"
 	"fmt"
+	"github.com/qwenode/gogo/ss"
 	"github.com/qwenode/gogo/str"
 	"hash/crc32"
 	"io"
@@ -20,7 +21,7 @@ func GetFileNameWithoutExtension(filePath string) string {
 		return filePath
 	}
 	base := filepath.Base(filePath)
-	return str.GetFirstElemBySep(base, ".")
+	return ss.GetFirstElemBySep(base, ".")
 }
 
 // GetExtension get extension name with no check mime type
@@ -45,7 +46,7 @@ func GetLines(filename string) (lines []string) {
 // Exist check file or dir if exists
 func Exist(filename string) bool {
 	_, err := os.Stat(filename)
-	
+
 	if err != nil {
 		if os.IsNotExist(err) {
 			return false
