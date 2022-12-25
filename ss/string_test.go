@@ -293,3 +293,31 @@ func TestExtractUrls(t *testing.T) {
 		})
 	}
 }
+
+func TestContains(t *testing.T) {
+	type args struct {
+		str   string
+		finds []string
+	}
+	tests := []struct {
+		name string
+		args args
+		want bool
+	}{
+		{
+			args: args{str: "testxx1100022", finds: []string{"aa", "000"}},
+			want: true,
+		},
+		{
+			args: args{str: "testxx1100022", finds: []string{"aa", "bb"}},
+			want: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := Contains(tt.args.str, tt.args.finds...); got != tt.want {
+				t.Errorf("Contains() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

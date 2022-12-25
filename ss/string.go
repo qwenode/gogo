@@ -85,6 +85,16 @@ func JoinWithSep(sep string, elem ...string) string {
 	return strings.Trim(strings.Join(elem, sep), sep)
 }
 
+// Contains find any string in the str
+func Contains(str string, finds ...string) bool {
+	for _, find := range finds {
+		if strings.Contains(str, find) {
+			return true
+		}
+	}
+	return false
+}
+
 // Join merge string
 func Join(elem ...string) string {
 	if len(elem) == 0 {
