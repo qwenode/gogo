@@ -172,3 +172,44 @@ func TestBetweenInt64(t *testing.T) {
 		})
 	}
 }
+
+func TestRound(t *testing.T) {
+	type args struct {
+		f float64
+		n int
+	}
+	tests := []struct {
+		name string
+		args args
+		want float64
+	}{
+		{
+			args: args{
+				f: 0.333333,
+				n: 2,
+			},
+			want: 0.33,
+		},
+		{
+			args: args{
+				f: 0.336333,
+				n: 2,
+			},
+			want: 0.34,
+		},
+		{
+			args: args{
+				f: 0.336333,
+				n: 3,
+			},
+			want: 0.336,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := Round(tt.args.f, tt.args.n); got != tt.want {
+				t.Errorf("Round() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
