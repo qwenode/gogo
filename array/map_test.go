@@ -21,7 +21,7 @@ func TestGetMapIntKeys(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
+        t.Run(tt.name, func(t *testing.T) {
             got := GetIntegerKeys(tt.args.m)
             for _, i := range got {
                 if !IntInSlice(i, tt.want) {

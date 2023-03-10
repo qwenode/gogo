@@ -3,7 +3,7 @@ package array
 // GetMapIntKeys get map keys,return slice
 // Deprecated see GetIntegerKeys
 func GetMapIntKeys(m map[int]interface{}) []int {
-    return GetIntegerKeys(m)
+	return GetIntegerKeys(m)
 }
 
 // GetIntegerKeys get map keys,return slice
