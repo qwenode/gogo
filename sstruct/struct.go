@@ -12,8 +12,10 @@ func ToFieldValueMap(data interface{}) map[string]interface{} {
     for i := 0; i < v.NumField(); i++ {
         list[typeV.Field(i).Name] = v.Field(i).Interface()
     }
+    
     return list
 }
+
 
 // ToMapByTag  struct to map using tag as key
 func ToMapByTag(data interface{}, tag string) map[string]interface{} {
