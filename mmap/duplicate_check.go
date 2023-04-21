@@ -37,3 +37,8 @@ func (r *duplicateCheck[T]) Add(v T) {
     }
     r.data[v] = v
 }
+
+// GetRWMutex 获取锁
+func (r *duplicateCheck[T]) GetRWMutex() *sync.RWMutex {
+    return r.lock
+}
