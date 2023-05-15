@@ -1,6 +1,7 @@
 package ss
 
 import (
+	"log"
 	"regexp"
 	"strings"
 )
@@ -89,6 +90,21 @@ func JoinWithSep(sep string, elem ...string) string {
 func Contains(str string, finds ...string) bool {
 	for _, find := range finds {
 		if strings.Contains(str, find) {
+			return true
+		}
+	}
+	return false
+}
+
+// ContainsAllOfAll matches any things
+func ContainsAllOfAll(str string, finds ...string) bool {
+	str = strings.ToLower(str)
+	for i, find := range finds {
+		finds[i] = strings.ToLower(find)
+	}
+	for _, find := range finds {
+		if strings.Contains(str, find) || strings.Contains(find, str) {
+			log.Println(str, find)
 			return true
 		}
 	}

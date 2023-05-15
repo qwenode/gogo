@@ -321,3 +321,44 @@ func TestContains(t *testing.T) {
 		})
 	}
 }
+
+func TestContainsAllOfAll(t *testing.T) {
+	type args struct {
+		str   string
+		finds []string
+	}
+	tests := []struct {
+		name string
+		args args
+		want bool
+	}{
+		{
+			args: args{
+				str:   "abc",
+				finds: []string{"ABDD"},
+			},
+			want: false,
+		},
+		{
+			args: args{
+				str:   "abc",
+				finds: []string{"abcda"},
+			},
+			want: true,
+		},
+		{
+			args: args{
+				str:   "abcda",
+				finds: []string{"bcd"},
+			},
+			want: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := ContainsAllOfAll(tt.args.str, tt.args.finds...); got != tt.want {
+				t.Errorf("ContainsAllOfAll() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
