@@ -1,7 +1,6 @@
 package ss
 
 import (
-	"log"
 	"regexp"
 	"strings"
 )
@@ -104,7 +103,6 @@ func ContainsAllOfAll(str string, finds ...string) bool {
 	}
 	for _, find := range finds {
 		if strings.Contains(str, find) || strings.Contains(find, str) {
-			log.Println(str, find)
 			return true
 		}
 	}

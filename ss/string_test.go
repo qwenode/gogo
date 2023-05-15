@@ -309,6 +309,10 @@ func TestContains(t *testing.T) {
 			want: true,
 		},
 		{
+			args: args{str: "testxx1100022", finds: []string{"aa", "test"}},
+			want: true,
+		},
+		{
 			args: args{str: "testxx1100022", finds: []string{"aa", "bb"}},
 			want: false,
 		},
