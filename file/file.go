@@ -31,11 +31,16 @@ func GetExtension(filePath string) string {
 
 // GetContents get file content
 func GetContents(filename string) string {
+	return string(GetContentsByte(filename))
+}
+
+// GetContentsByte get file content returns byte
+func GetContentsByte(filename string) []byte {
 	file, err := os.ReadFile(filename)
 	if err != nil {
-		return ""
+		return []byte{}
 	}
-	return string(file)
+	return file
 }
 
 // GetLines get every line of file

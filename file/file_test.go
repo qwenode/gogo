@@ -553,3 +553,30 @@ func TestGetFileName(t *testing.T) {
 		})
 	}
 }
+
+func TestGetContentsByte(t *testing.T) {
+	type args struct {
+		filename string
+	}
+	tests := []struct {
+		name string
+		args args
+		want []byte
+	}{
+		{
+			args: args{filename: "./file.go"},
+			want: GetContentsByte("./file.go"),
+		},
+		{
+			args: args{filename: "./fff"},
+			want: []byte{},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := GetContentsByte(tt.args.filename); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("GetContentsByte() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
