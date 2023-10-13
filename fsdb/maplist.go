@@ -65,6 +65,11 @@ func (r *MapList[T]) Save() error {
 	defer r.lock.RUnlock()
 	return file.PutContents(r.filename, serialize.JsonEncodeByte(r.data))
 }
+func (r *MapList[T]) SaveTo(path string) error {
+	r.lock.RLock()
+	defer r.lock.RUnlock()
+	return file.PutContents(path, serialize.JsonEncodeByte(r.data))
+}
 func (r *MapList[T]) Len() int {
 	r.lock.RLock()
 	defer r.lock.RUnlock()

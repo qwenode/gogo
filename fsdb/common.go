@@ -37,7 +37,11 @@ func (r *Common[T]) Reload() error {
 	}
 	return json.Unmarshal(file.GetContentsByte(r.filename), &r.data)
 }
-
+func (r *Common[T]) SaveTo(path string) error {
+	r.lock.RLock()
+	defer r.lock.RUnlock()
+	return file.PutContents(path, serialize.JsonEncodeByte(r.data))
+}
 func CommonFromFile[T any](filename string) *Common[T] {
 	s := new(Common[T])
 	s.filename = filename
