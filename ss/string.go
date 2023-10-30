@@ -1,18 +1,8 @@
 package ss
 
 import (
-	"regexp"
 	"strings"
 )
-
-func ExtractUrls(str string) []string {
-	if len(str) <= 0 {
-		return []string{}
-	}
-	compile, _ := regexp.Compile(`\bhttps?://[^,\s()<>]+(?:\([\w\d]+\)|([^,[:punct:]\s]|/))`)
-	submatch := compile.FindAllString(str, -1)
-	return submatch
-}
 
 // Substr with length
 func Substr(str string, start, length int) string {

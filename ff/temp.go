@@ -7,7 +7,6 @@ import (
 )
 
 // CreateTempFileWithString create the temporary file with given string
-// Deprecated
 func CreateTempFileWithString(str string) (*os.File, error) {
 	tempFile, err := ioutil.TempFile(os.TempDir(), hashes.Sha1(str))
 	if err != nil {

@@ -1,19 +1,18 @@
-package uurl
+package ss
 
 import (
 	"net/url"
+	"regexp"
 	"strings"
 )
 
 // UrlDecode url.QueryUnescape
-// Deprecated
 func UrlDecode(s string) string {
 	unescape, _ := url.QueryUnescape(s)
 	return unescape
 }
 
 // IsUrl check url
-// Deprecated
 func IsUrl(s string) bool {
 	if strings.TrimSpace(s) == "" {
 		return false
@@ -23,4 +22,12 @@ func IsUrl(s string) bool {
 		return false
 	}
 	return true
+}
+func ExtractUrls(str string) []string {
+	if len(str) <= 0 {
+		return []string{}
+	}
+	compile, _ := regexp.Compile(`\bhttps?://[^,\s()<>]+(?:\([\w\d]+\)|([^,[:punct:]\s]|/))`)
+	submatch := compile.FindAllString(str, -1)
+	return submatch
 }
