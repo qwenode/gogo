@@ -1,4 +1,4 @@
-package file
+package ff
 
 import (
 	"crypto/md5"
@@ -6,13 +6,22 @@ import (
 	"crypto/sha256"
 	"fmt"
 	"github.com/qwenode/gogo/ss"
-	"github.com/qwenode/gogo/str"
 	"hash/crc32"
 	"io"
 	"os"
 	"path/filepath"
 	"strings"
 )
+
+var _workDirectory = ""
+
+func init() {
+	x, _ := os.Getwd()
+	_workDirectory, _ = filepath.Abs(x)
+}
+func GetWorkDirectory() string {
+	return _workDirectory
+}
 
 // GetFileNameWithoutExtension get file name without extension exp: xxx/aa.go returns: aa
 func GetFileNameWithoutExtension(filePath string) string {
@@ -26,7 +35,7 @@ func GetFileNameWithoutExtension(filePath string) string {
 
 // GetExtension get extension name with no check mime type
 func GetExtension(filePath string) string {
-	return str.GetLastElemBySep(filePath, ".")
+	return ss.GetLastElemBySep(filePath, ".")
 }
 
 // GetContents get file content

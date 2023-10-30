@@ -1,4 +1,4 @@
-package file
+package ff
 
 import (
 	"github.com/qwenode/gogo/hashes"
