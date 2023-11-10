@@ -19,4 +19,8 @@ GoGo is a Golang Toolbox
 
 https://github.com/microcosm-cc/bluemonday 对html内容进行过滤,允许不过滤哪些标签等等
 
-https://github.com/elliotchance/pie  array helper
+https://github.com/elliotchance/pie  array helper slice
+
+go get github.com/elliotchance/pie/v2
+
+https://github.com/joho/godotenv  .env 配置文件读取
