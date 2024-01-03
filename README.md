@@ -25,6 +25,8 @@ go get github.com/elliotchance/pie/v2
 
 https://github.com/joho/godotenv  .env 配置文件读取
 
-github.com/mitchellh/copystructure 深度拷贝
+github.com/mitchellh/copystructure 结构体复制
 
 https://github.com/charmbracelet/bubbletea 命令行助手
+
+https://github.com/rs/zerolog 日志
