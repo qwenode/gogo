@@ -17,16 +17,26 @@ GoGo is a Golang Toolbox
 
 ### 建议使用的库
 
-https://github.com/microcosm-cc/bluemonday 对html内容进行过滤,允许不过滤哪些标签等等
+#### 对html内容进行过滤,允许不过滤哪些标签等等
 
-https://github.com/elliotchance/pie  array helper slice
+go get ithub.com/microcosm-cc/bluemonday
+
+#### array helper slice
 
 go get github.com/elliotchance/pie/v2
 
-https://github.com/joho/godotenv  .env 配置文件读取
+#### .env 配置文件读取
 
-github.com/mitchellh/copystructure 结构体复制
+go get github.com/joho/godotenv
 
-https://github.com/charmbracelet/bubbletea 命令行助手
+#### 结构体复制
 
-https://github.com/rs/zerolog 日志
+go get github.com/mitchellh/copystructure
+
+#### 命令行助手
+
+go get github.com/charmbracelet/bubbletea
+
+#### 日志
+
+go get github.com/rs/zerolog

@@ -1,12 +1,16 @@
 package main
 
 import (
-	"log"
-	"os/exec"
+	"github.com/qwenode/gogo/ratelimit"
+	"time"
 )
 
 func main() {
-	output, err := exec.Command("tailscale", "set", "--exit-node=").CombinedOutput()
-
-	log.Println(output, err)
+	limit := ratelimit.NewRateLimit(5)
+	limit.Add()
+	go func(l ratelimit.RateLimit) {
+		defer l.Done()
+		time.Sleep(time.Second * 5)
+	}(limit)
+	limit.Wait()
 }
