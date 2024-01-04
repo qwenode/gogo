@@ -29,9 +29,9 @@ go get github.com/elliotchance/pie/v2
 
 go get github.com/joho/godotenv
 
-#### 结构体复制
+#### 复制
 
-go get github.com/mitchellh/copystructure
+go get github.com/jinzhu/copier
 
 #### 命令行助手
 
