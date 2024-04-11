@@ -3,7 +3,7 @@ package cmdline
 import (
 	"bufio"
 	"github.com/qwenode/gogo/sanitize"
-	"io/ioutil"
+	"io"
 	"os/exec"
 )
 
@@ -34,7 +34,7 @@ func CommandRealtimeStdout(fn commandStdoutFunc, name string, arg ...string) boo
 	defer pipe.Close()
 	defer stderrPipe.Close()
 	if err := command.Start(); err != nil {
-		all, _ := ioutil.ReadAll(stderrPipe)
+		all, _ := io.ReadAll(stderrPipe)
 		return fn(string(all), sanitize.Int(string(all)), true)
 	}
 	reader := bufio.NewReader(pipe)
@@ -42,7 +42,7 @@ func CommandRealtimeStdout(fn commandStdoutFunc, name string, arg ...string) boo
 	for {
 		readString, err := reader.ReadString('\n')
 		if err != nil {
-			all, _ := ioutil.ReadAll(stderrPipe)
+			all, _ := io.ReadAll(stderrPipe)
 			r = fn(string(all), sanitize.Int(string(all)), true)
 			break
 		}
