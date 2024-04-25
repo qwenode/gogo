@@ -3,7 +3,7 @@ package fsdb
 import (
 	"encoding/json"
 	"errors"
-	"github.com/qwenode/gogo/file"
+	"github.com/qwenode/gogo/ff"
 	"github.com/qwenode/gogo/serialize"
 	"sync"
 )
@@ -31,10 +31,10 @@ func (r *MapList[T]) GetDataCopy() map[string]T {
 func (r *MapList[T]) Reload() error {
 	r.lock.Lock()
 	defer r.lock.Unlock()
-	if !file.Exist(r.filename) {
+	if !ff.Exist(r.filename) {
 		return errors.New("file not found")
 	}
-	return json.Unmarshal(file.GetContentsByte(r.filename), &r.data)
+	return json.Unmarshal(ff.GetContentsByte(r.filename), &r.data)
 }
 func (r *MapList[T]) Add(key string, item T) {
 	r.lock.Lock()
@@ -61,14 +61,14 @@ func (r *MapList[T]) Get(key string) (T, bool) {
 	return t, ok
 }
 func (r *MapList[T]) Save() error {
-	r.lock.RLock()
-	defer r.lock.RUnlock()
-	return file.PutContents(r.filename, serialize.JsonEncodeByte(r.data))
+	r.lock.Lock()
+	defer r.lock.Unlock()
+	return ff.PutContents(r.filename, serialize.JsonEncodeByte(r.data))
 }
 func (r *MapList[T]) SaveTo(path string) error {
-	r.lock.RLock()
-	defer r.lock.RUnlock()
-	return file.PutContents(path, serialize.JsonEncodeByte(r.data))
+	r.lock.Lock()
+	defer r.lock.Unlock()
+	return ff.PutContents(path, serialize.JsonEncodeByte(r.data))
 }
 func (r *MapList[T]) Len() int {
 	r.lock.RLock()
