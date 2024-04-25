@@ -11,7 +11,8 @@ func Retry(callable func() error, retries int) error {
 		if err != nil {
 			continue
 		}
+		err = nil
 		break
 	}
-	return nil
+	return err
 }
