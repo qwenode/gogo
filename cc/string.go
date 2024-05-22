@@ -1,11 +1,10 @@
-package convert
+package cc
 
 import (
 	"fmt"
 	"strconv"
 )
 
-// Deprecated
 // ToString convert to string
 func ToString(str interface{}) string {
 	switch str.(type) {

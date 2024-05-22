@@ -1,8 +1,7 @@
-package convert
+package cc
 
 import "strconv"
 
-// Deprecated
 // ToInt convert to int
 func ToInt(str interface{}) int {
 	switch str.(type) {
@@ -35,7 +34,6 @@ func ToInt(str interface{}) int {
 	}
 }
 
-// Deprecated
 // ToUInt convert to uint
 func ToUInt(str interface{}) uint {
 	switch str.(type) {
@@ -63,7 +61,6 @@ func ToUInt(str interface{}) uint {
 	}
 }
 
-// Deprecated
 // ToUInt64 convert to uint64
 func ToUInt64(str interface{}) uint64 {
 	switch str.(type) {
@@ -91,7 +88,6 @@ func ToUInt64(str interface{}) uint64 {
 	}
 }
 
-// Deprecated
 // ToInt64 convert to int64
 func ToInt64(str interface{}) int64 {
 	switch str.(type) {
@@ -119,7 +115,6 @@ func ToInt64(str interface{}) int64 {
 	}
 }
 
-// Deprecated
 // ToInt32 convert to int32
 func ToInt32(str interface{}) int32 {
 	switch str.(type) {
@@ -152,7 +147,6 @@ func ToInt32(str interface{}) int32 {
 	}
 }
 
-// Deprecated
 // ToFloat64 convert to float64
 func ToFloat64(str interface{}) float64 {
 	switch str.(type) {
