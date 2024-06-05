@@ -29,14 +29,7 @@ func ToString(str interface{}) string {
 // ToBoolean convert to boolean
 func ToBoolean(data interface{}) bool {
     switch data.(type) {
-    case int:
-    case int32:
-    case int64:
-    case uint:
-    case uint32:
-    case uint64:
-    case uint8:
-    case int8:
+    case int, int32, int64, uint, uint32, uint64, uint8, int8:
         toInt := ToInt(data)
         return toInt > 0
     case string:
