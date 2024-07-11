@@ -9,12 +9,7 @@ import (
 func GetBool(key string) bool {
 	value := strings.ToLower(GetValue(key))
 	switch value {
-	case "ok":
-	case "true":
-	case "1":
-	case "yes":
-	case "y":
-	case "on":
+	case "ok", "true", "1", "yes", "y", "on", "good":
 		return true
 	}
 	return false
